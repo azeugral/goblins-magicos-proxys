@@ -7,12 +7,11 @@
    Veja o LEIA-ME.md para o passo a passo.
    ===================================================================== */
 
-window.GMP = {
+window.SITE = {
 
   /* ---------- Marca e contato ---------- */
   marca: {
     nome: "Goblins Mágicos Proxys",
-    sigla: "GMP",
     instagram: "[seu_usuario]",          // só o @, sem o "@". Ex.: "goblinsmagicos"
     whatsapp: "",                         // opcional. Só números com DDI+DDD. Ex.: "5511999999999". Vazio = esconde o botão
     cidade: "[Sua cidade — UF]",
@@ -71,7 +70,7 @@ window.GMP = {
       { titulo: "No sleeve", texto: "[Espessura, se passa despercebida no deck]", foto: "" },
     ],
     // Comparação lado a lado (arraste). Deixe "" para mostrar exemplo.
-    comparacao: { original: "", proxy: "", legendaOriginal: "Original", legendaProxy: "GMP" },
+    comparacao: { original: "", proxy: "", legendaOriginal: "Original", legendaProxy: "Goblins Mágicos" },
   },
 
   /* ---------- Como funciona ---------- */

@@ -14,7 +14,7 @@ Quando você troca o texto, a borda some sozinha.
    - Coloque as fotos em `assets/img/cartas/`. O ideal é uma carta por arquivo, em pé e cortada rente à carta. A proporção é 63×88 (ex.: 630×880 px), em `.webp` ou `.jpg`.
    - Em `vitrine`, preencha `nome` e `imagem` (ex.: `"assets/img/cartas/krark.webp"`). Em `tags`, você cria os filtros. Com `foil: true`, a carta ganha o brilho holográfico.
    - Carta sem `imagem` aparece como uma carta de exemplo com o goblin.
-4. **Qualidade:** textos e fotos de perto (papel, corte, foil, sleeve). A comparação "Original × GMP" aceita duas fotos da mesma carta.
+4. **Qualidade:** textos e fotos de perto (papel, corte, foil, sleeve). A comparação "Original × Goblins Mágicos" aceita duas fotos da mesma carta.
 5. **Preços:** em `precos.planos`, os valores aparecem como "a partir de".
 6. **Estimativa do montador:** em `montador`, coloque os números (ex.: `precoAvulsa: 3.5`). Se deixar `null`, o site mostra "orçamento na DM".
 7. **Depoimentos e FAQ:** é só editar a lista.

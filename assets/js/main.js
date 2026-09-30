@@ -2,7 +2,7 @@
    Monta a página a partir do config.js. Não precisa editar este arquivo. */
 (() => {
   "use strict";
-  const C = window.GMP || {};
+  const C = window.SITE || {};
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const get = (path) => path.split(".").reduce((o, k) => (o == null ? o : o[k]), C);
@@ -50,7 +50,7 @@
   $$("[data-list]").forEach((ul) => (get(ul.dataset.list) || []).forEach((t) => ul.append(h("li", { text: t }))));
   const yearEl = $("[data-year]");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
-  document.title = `${get("marca.nome") || "GMP"} · Proxies de TCG`;
+  document.title = `${get("marca.nome") || "Goblins Mágicos Proxys"} · Proxies de TCG`;
 
   /* ---------- Instagram / WhatsApp ---------- */
   const igUser = String(get("marca.instagram") || "").replace(/^@/, "").trim();
@@ -111,7 +111,7 @@
       h("div", { class: "ph__art" }, h("img", { src: "assets/img/logo-192.webp", alt: "", loading: "lazy", width: 192, height: 192 })),
       h("div", { class: "ph__type" }),
       h("div", { class: "ph__text" }, h("i"), h("i"), h("i"), h("i")),
-      h("div", { class: "ph__foot" }, h("span", { text: "GMP · PROXY" }), h("span", { text: String(i + 1).padStart(3, "0") })),
+      h("div", { class: "ph__foot" }, h("span", { text: "GOBLINS MÁGICOS" }), h("span", { text: String(i + 1).padStart(3, "0") })),
     );
     return ph;
   }
@@ -316,7 +316,7 @@
   const ta = $("[data-forge-list]");
   const M = get("montador") || {};
   ta.placeholder = M.exemploLista || "1 Sol Ring";
-  const saved = store.get("gmp-lista");
+  const saved = store.get("goblins-lista");
   if (saved) ta.value = saved;
 
   const SKIP = /^(commander|comandante|deck|mainboard|main|sideboard|side|maybeboard|companion|about|name)\b.*:?\s*$/i;
@@ -361,7 +361,7 @@
     tPrice.textContent = est.txt;
     tLbl.textContent = est.lbl;
     last = { list, total, acab, est };
-    store.set("gmp-lista", ta.value);
+    store.set("goblins-lista", ta.value);
   }
   ta.addEventListener("input", update);
   form.addEventListener("change", update);
@@ -387,7 +387,7 @@
   function message() {
     const acabTxt = { comum: "Comum", foil: "Foil", misto: "Misto (comum + foil)" }[last.acab];
     const nome = form.nome.value.trim(), obs = form.obs.value.trim();
-    const rows = [`Olá! Quero encomendar proxies (${get("marca.sigla") || "GMP"}).`, ""];
+    const rows = [`Olá! Quero encomendar proxies na ${get("marca.nome") || "Goblins Mágicos Proxys"}.`, ""];
     if (nome) rows.push(`Nome: ${nome}`);
     rows.push(`Acabamento: ${acabTxt}`, `Total: ${last.total} cartas (${last.list.length} diferentes)`);
     if (last.est.txt !== "Na DM") rows.push(`Estimativa do site: ${last.est.txt}`);
