@@ -20,9 +20,9 @@ window.SITE = {
 
   /* ---------- Topo da página ---------- */
   hero: {
-    selo: "Proxies feitos à mão · [Sua cidade]",
-    titulo: ["Jogue com o", "deck dos sonhos.", "Sem vender um rim."],   // 3 linhas; a 2ª ganha destaque
-    subtitulo: "Proxies de TCG impressos e cortados no tamanho oficial, pra mesa casual, Commander e playtest. Você manda a lista, a gente forja o deck.",
+    selo: "Encomendas abertas · [Sua cidade]",
+    titulo: ["Proxies de TCG", "para mesa casual", "e playtest"],   // até 3 linhas; a 2ª ganha destaque
+    subtitulo: "Cartas impressas e cortadas em 63×88 mm, com opção de foil. Mande a lista do seu deck pelo Instagram e receba o orçamento.",
     ctaPrincipal: "Encomendar no Instagram",
     ctaSecundario: "Ver a vitrine",
     miniProvas: ["[000+ cartas entregues]", "[Papel 000g]", "Envio pra todo o Brasil"],
@@ -61,7 +61,7 @@ window.SITE = {
 
   /* ---------- Qualidade de perto ---------- */
   qualidade: {
-    titulo: "Parece carta. Embaralha como carta.",
+    titulo: "Papel, corte e acabamento",
     texto: "[Explique aqui o seu processo: papel, impressão, corte, acabamento. Duas ou três frases bastam.]",
     itens: [
       { titulo: "Papel", texto: "[Tipo de papel, gramatura, se é black core…]", foto: "" },
@@ -78,7 +78,7 @@ window.SITE = {
     { titulo: "Monte a lista", texto: "Use Moxfield, Archidekt, LigaMagic ou o montador aqui embaixo. Uma carta por linha." },
     { titulo: "Mande na DM", texto: "O botão copia seu pedido pronto. É só colar na conversa do Instagram." },
     { titulo: "Orçamento e pagamento", texto: "[Como você passa o valor e quais formas de pagamento aceita]" },
-    { titulo: "Forja e envio", texto: "[Prazo de produção e como envia]" },
+    { titulo: "Produção e envio", texto: "[Prazo de produção e como envia]" },
   ],
 
   /* ---------- Preços ----------
@@ -125,6 +125,5 @@ window.SITE = {
   /* ---------- Rodapé ---------- */
   rodape: {
     aviso: "Proxies para uso casual e playtest. Não são cartas oficiais e não têm vínculo com as editoras dos jogos.",
-    credito: "",   // opcional. Ex.: "Site por LRGZ"
   },
 };
