@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Goblins Mágicos Proxys</title>
+  <meta name="description" content="Proxies de TCG feitos à mão, no tamanho oficial, para mesa casual, Commander e playtest. Encomendas pelo Instagram.">
+  <meta name="theme-color" content="#120e0c">
+  <meta property="og:title" content="Goblins Mágicos Proxys">
+  <meta property="og:description" content="Proxies de TCG feitos à mão. Você manda a lista, a gente forja o deck.">
+  <meta property="og:image" content="assets/img/logo-512.webp">
+  <link rel="icon" type="image/png" href="assets/img/favicon-64.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,50..150,400..900;1,50..150,400..900&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ============ TOPO ============ -->
+  <header class="topbar" data-topbar>
+    <div class="topbar__in wrap">
+      <a class="brand" href="#topo" aria-label="Início">
+        <img src="assets/img/logo-192.webp" width="40" height="40" alt="">
+        <span class="brand__txt"><b data-bind="marca.sigla"></b><small data-bind="marca.nome"></small></span>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#vitrine">Vitrine</a>
+        <a href="#qualidade">Qualidade</a>
+        <a href="#como">Como funciona</a>
+        <a href="#precos">Preços</a>
+        <a href="#faq">Dúvidas</a>
+      </nav>
+      <a class="btn btn--sm btn--ig" data-ig-dm target="_blank" rel="noopener">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg><span>Encomendar</span>
+      </a>
+      <button class="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" data-menu-btn><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="drawer" data-drawer hidden>
+    <nav aria-label="Menu">
+      <a href="#vitrine">Vitrine</a>
+      <a href="#qualidade">Qualidade</a>
+      <a href="#como">Como funciona</a>
+      <a href="#precos">Preços</a>
+      <a href="#pedido">Montar pedido</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+    <a class="btn btn--ig btn--block" data-ig-dm target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Chamar no Instagram</a>
+  </div>
+
+  <main id="conteudo">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="topo">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow" data-reveal><span class="dot"></span><span data-bind="hero.selo"></span></p>
+          <h1 class="hero__title" data-hero-title></h1>
+          <p class="hero__sub" data-reveal style="--d:.5s" data-bind="hero.subtitulo"></p>
+          <div class="hero__ctas" data-reveal style="--d:.6s">
+            <a class="btn btn--ig btn--lg" data-ig-dm target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg><span data-bind="hero.ctaPrincipal"></span></a>
+            <a class="btn btn--ghost btn--lg" href="#vitrine"><span data-bind="hero.ctaSecundario"></span><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></a>
+          </div>
+          <ul class="hero__proofs" data-reveal style="--d:.7s" data-list="hero.miniProvas"></ul>
+        </div>
+
+        <div class="hero__stage" aria-hidden="true">
+          <div class="seal">
+            <svg class="seal__ring" viewBox="0 0 200 200"><defs><path id="ring" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs><text><textPath href="#ring" data-ring></textPath></text></svg>
+            <img class="seal__logo" src="assets/img/logo-512.webp" width="512" height="512" alt="">
+          </div>
+          <div class="fan" data-fan></div>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#vitrine" aria-label="Rolar para a vitrine"><span></span></a>
+    </section>
+
+    <!-- ============ SELOS ============ -->
+    <div class="ticker" aria-label="Diferenciais">
+      <div class="ticker__track" data-ticker></div>
+    </div>
+
+    <!-- ============ VITRINE ============ -->
+    <section class="section" id="vitrine">
+      <div class="wrap">
+        <header class="sec-head" data-reveal>
+          <p class="kicker">01 · Vitrine</p>
+          <h2 class="sec-title">Saído da forja<br><em>direto pra mesa.</em></h2>
+          <p class="sec-lead">Cartas que já passaram por aqui. Toque em uma pra ver de perto e colocar no seu pedido.</p>
+        </header>
+        <div class="chips" role="toolbar" aria-label="Filtrar cartas" data-chips></div>
+        <ul class="grid-cards" data-grid></ul>
+      </div>
+    </section>
+
+    <!-- ============ QUALIDADE ============ -->
+    <section class="section section--alt" id="qualidade">
+      <div class="wrap quality">
+        <div class="quality__copy">
+          <header class="sec-head" data-reveal>
+            <p class="kicker">02 · Qualidade</p>
+            <h2 class="sec-title" data-bind="qualidade.titulo"></h2>
+            <p class="sec-lead" data-bind="qualidade.texto"></p>
+          </header>
+          <ol class="specs" data-specs></ol>
+        </div>
+        <figure class="compare" data-compare data-reveal>
+          <div class="compare__side compare__side--a" data-compare-a></div>
+          <div class="compare__side compare__side--b" data-compare-b></div>
+          <div class="compare__handle" aria-hidden="true"><span></span></div>
+          <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Comparar original e proxy">
+          <figcaption><span data-bind="qualidade.comparacao.legendaOriginal"></span><span data-bind="qualidade.comparacao.legendaProxy"></span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ COMO FUNCIONA ============ -->
+    <section class="section" id="como">
+      <div class="wrap">
+        <header class="sec-head sec-head--center" data-reveal>
+          <p class="kicker">03 · Como funciona</p>
+          <h2 class="sec-title">Da lista ao deck<br><em>em quatro passos.</em></h2>
+        </header>
+        <ol class="steps" data-steps></ol>
+      </div>
+    </section>
+
+    <!-- ============ PREÇOS ============ -->
+    <section class="section section--alt" id="precos">
+      <div class="wrap">
+        <header class="sec-head sec-head--center" data-reveal>
+          <p class="kicker">04 · Preços</p>
+          <h2 class="sec-title">Poder de mesa<br><em>por uma fração do preço.</em></h2>
+          <p class="sec-lead" data-bind="precos.avisoEstimativa"></p>
+        </header>
+        <div class="plans" data-plans></div>
+      </div>
+    </section>
+
+    <!-- ============ MONTADOR ============ -->
+    <section class="section section--forge" id="pedido">
+      <div class="wrap forge">
+        <header class="sec-head" data-reveal>
+          <p class="kicker">05 · Montar pedido</p>
+          <h2 class="sec-title">Cole a lista.<br><em>A gente cuida do resto.</em></h2>
+          <p class="sec-lead">Uma carta por linha, com a quantidade na frente. Funciona com listas exportadas do Moxfield, Archidekt e LigaMagic.</p>
+          <ul class="forge__tips">
+            <li><code>1 Sol Ring</code></li>
+            <li><code>4x Lightning Bolt</code></li>
+            <li><code>Command Tower</code> <span>(sem número = 1)</span></li>
+          </ul>
+        </header>
+
+        <form class="forge__panel" data-forge novalidate data-reveal>
+          <label class="field">
+            <span class="field__lbl">Sua lista</span>
+            <textarea name="lista" rows="10" spellcheck="false" autocomplete="off" data-forge-list></textarea>
+          </label>
+          <div class="field-row">
+            <label class="field">
+              <span class="field__lbl">Acabamento</span>
+              <span class="seg" role="radiogroup" aria-label="Acabamento">
+                <label><input type="radio" name="acab" value="comum" checked><span>Comum</span></label>
+                <label><input type="radio" name="acab" value="foil"><span>Foil</span></label>
+                <label><input type="radio" name="acab" value="misto"><span>Misto</span></label>
+              </span>
+            </label>
+            <label class="field">
+              <span class="field__lbl">Seu nome <i>(opcional)</i></span>
+              <input type="text" name="nome" autocomplete="given-name" maxlength="60">
+            </label>
+          </div>
+          <label class="field">
+            <span class="field__lbl">Observações <i>(opcional)</i></span>
+            <input type="text" name="obs" maxlength="200" placeholder="Ex.: quero o comandante em foil, prazo até dia 20…">
+          </label>
+
+          <div class="tally" aria-live="polite">
+            <div><b data-t-total>0</b><span>cartas</span></div>
+            <div><b data-t-unique>0</b><span>diferentes</span></div>
+            <div class="tally__price"><b data-t-price>—</b><span data-t-price-lbl>estimativa</span></div>
+          </div>
+
+          <div class="forge__actions">
+            <button class="btn btn--ig btn--lg btn--block" type="submit" data-forge-send><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Copiar pedido e abrir o Instagram</button>
+            <button class="btn btn--wa btn--block" type="button" data-forge-wa hidden><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Enviar pelo WhatsApp</button>
+            <button class="linkbtn" type="button" data-forge-clear>Limpar lista</button>
+          </div>
+          <p class="forge__note">O Instagram não deixa a gente escrever na sua DM. Por isso o pedido vai copiado: é só <b>colar</b> na conversa.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ DEPOIMENTOS ============ -->
+    <section class="section section--tight" aria-label="Depoimentos">
+      <div class="quotes" data-quotes></div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="wrap faq">
+        <header class="sec-head" data-reveal>
+          <p class="kicker">06 · Dúvidas</p>
+          <h2 class="sec-title">Perguntas<br><em>de mesa.</em></h2>
+          <p class="sec-lead">Não achou a sua? Chama na DM.</p>
+          <a class="btn btn--ghost" data-ig-dm target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Perguntar no Instagram</a>
+        </header>
+        <div class="acc" data-faq></div>
+      </div>
+    </section>
+
+    <!-- ============ CTA FINAL ============ -->
+    <section class="final">
+      <div class="wrap final__in" data-reveal>
+        <img src="assets/img/logo-192.webp" width="96" height="96" alt="" class="final__logo">
+        <h2 class="final__title">Bora forjar<br><em>o seu deck?</em></h2>
+        <a class="btn btn--ig btn--lg" data-ig-dm target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg><span data-ig-handle></span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <div class="foot__brand">
+        <img src="assets/img/logo-192.webp" width="48" height="48" alt="">
+        <div><b data-bind="marca.nome"></b><span data-bind="marca.cidade"></span></div>
+      </div>
+      <p class="foot__legal" data-bind="rodape.aviso"></p>
+      <div class="foot__meta"><span>© <span data-year></span> <span data-bind="marca.nome"></span></span><span data-bind="rodape.credito"></span></div>
+    </div>
+  </footer>
+
+  <!-- Barra fixa no celular -->
+  <div class="dock" data-dock>
+    <a class="btn btn--ghost" href="#pedido">Montar pedido</a>
+    <a class="btn btn--ig" data-ig-dm target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Instagram</a>
+  </div>
+
+  <!-- Visualizar carta -->
+  <dialog class="viewer" data-viewer aria-label="Carta">
+    <button class="viewer__close" type="button" aria-label="Fechar" data-viewer-close><svg viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+    <div class="viewer__card" data-viewer-card></div>
+    <div class="viewer__info">
+      <h3 data-viewer-name></h3>
+      <ul class="viewer__tags" data-viewer-tags></ul>
+      <button class="btn btn--ig btn--block" type="button" data-viewer-add><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-plus"/></svg>Colocar no meu pedido</button>
+      <div class="viewer__nav">
+        <button class="linkbtn" type="button" data-viewer-prev>← Anterior</button>
+        <button class="linkbtn" type="button" data-viewer-next>Próxima →</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+  <!-- Ícones -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path fill="currentColor" d="M9.2 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c.6 1.1 1.4 1.9 2.5 2.5l.6-.6c.2-.2.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7-.5.3-1.3.5-2 .3-2.3-.6-4.6-2.9-5.2-5.2-.2-.7 0-1.5.1-2z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+  </svg>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
