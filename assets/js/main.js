@@ -10,6 +10,7 @@
   const fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.documentElement.classList.add("js");
+  document.addEventListener("touchstart", () => {}, { passive: true }); // ativa :active no iOS
 
   /* helper para criar elementos */
   function h(tag, attrs = {}, ...kids) {

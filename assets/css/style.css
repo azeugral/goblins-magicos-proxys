@@ -27,7 +27,7 @@
   --gutter: clamp(16px, 4vw, 40px);
   --r: 4px;
   --r-lg: 6px;
-  --ease: cubic-bezier(.2, .8, .2, 1);
+  --ease: cubic-bezier(.16, .84, .32, 1);
   --ease-out: cubic-bezier(.16, 1, .3, 1);
   --spring: cubic-bezier(.34, 1.56, .64, 1);
   --top-h: 68px;
@@ -89,12 +89,12 @@ button { font: inherit; color: inherit; }
   min-height: 48px; padding: 0 22px; border-radius: 0; border: 0; cursor: pointer;
   background: var(--bgc); color: var(--fg); text-decoration: none;
   font: 700 15px/1 var(--f-body); letter-spacing: .01em; white-space: nowrap;
-  transition: transform .25s var(--ease), box-shadow .25s var(--ease), background-color .25s;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), background-color .3s var(--ease), color .3s var(--ease);
   -webkit-tap-highlight-color: transparent;
 }
 .btn svg { width: 20px; height: 20px; flex: none; }
 .btn:hover { transform: translate(-2px, -2px); }
-.btn:active { transform: translate(1px, 1px); transition-duration: .06s; }
+.btn:active { transform: translate(2px, 2px); transition-duration: .14s; }
 .btn--sm { min-height: 40px; padding: 0 16px; font-size: 14px; }
 .btn--lg { min-height: 56px; padding: 0 28px; font-size: 16px; }
 .btn--block { width: 100%; }
@@ -103,7 +103,7 @@ button { font: inherit; color: inherit; }
 .btn--ig:active { box-shadow: 1px 1px 0 #000; }
 .btn--ghost { --bgc: transparent; box-shadow: 0 0 0 1.5px var(--line-2) inset; }
 .btn--ghost:hover { --bgc: rgba(243, 230, 200, .06); box-shadow: 0 0 0 1.5px var(--ink) inset; }
-.btn--ghost svg { transition: transform .25s var(--ease); }
+.btn--ghost svg { transition: transform .35s var(--ease); }
 .btn--ghost:hover svg { transform: translateX(3px); }
 .btn--wa { --bgc: #1f3a24; --fg: #d8f5c6; box-shadow: 0 0 0 1.5px rgba(120, 200, 110, .35) inset; }
 .linkbtn { background: none; border: 0; padding: 8px 4px; cursor: pointer; color: var(--ink-3); font-size: 14px; text-decoration: underline; text-underline-offset: 3px; }
@@ -245,7 +245,7 @@ button { font: inherit; color: inherit; }
 .chip { flex: none; scroll-snap-align: start; min-height: 40px; padding: 0 16px; border-radius: 0; border: 0; cursor: pointer; background: var(--surface); color: var(--ink-2); font: 600 14px/1 var(--f-body); box-shadow: 0 0 0 1px var(--line) inset; transition: background-color .25s, color .25s, box-shadow .25s, transform .2s var(--ease); display: inline-flex; align-items: center; gap: 8px; }
 .chip small { font: 700 11px/1 var(--f-mono); opacity: .6; }
 .chip:hover { color: var(--ink); box-shadow: 0 0 0 1px var(--line-2) inset; }
-.chip:active { transform: scale(.96); }
+.chip:active { transform: scale(.97); transition-duration: .14s; }
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); box-shadow: none; }
 
 .grid-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 42vw), 1fr)); gap: clamp(14px, 2.4vw, 28px); }
@@ -330,13 +330,13 @@ button { font: inherit; color: inherit; }
 .field__lbl i { font-style: normal; color: var(--ink-3); text-transform: none; letter-spacing: 0; }
 .field-row { display: grid; grid-template-columns: auto 1fr; gap: 16px; }
 textarea, input[type="text"] { width: 100%; border: 0; border-radius: 2px; background: #120d0b; color: var(--ink); font: 500 16px/1.55 var(--f-body); padding: 14px 16px; box-shadow: 0 0 0 1px var(--line-2) inset; transition: box-shadow .2s; }
-textarea { font-family: var(--f-mono); font-size: 15px; resize: vertical; min-height: 220px; }
+textarea { font-family: var(--f-mono); font-size: 16px; resize: vertical; min-height: 220px; }
 textarea::placeholder, input::placeholder { color: var(--ink-3); }
 textarea:focus, input[type="text"]:focus { outline: none; box-shadow: 0 0 0 2px var(--green) inset; }
 .seg { display: inline-flex; padding: 4px; border-radius: 2px; background: #120d0b; box-shadow: 0 0 0 1px var(--line-2) inset; }
 .seg label { position: relative; }
 .seg input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-.seg span { display: block; padding: 11px 14px; border-radius: 2px; font-weight: 600; font-size: 14px; color: var(--ink-2); transition: background-color .25s, color .25s; }
+.seg span { display: block; padding: 11px 14px; border-radius: 2px; font-weight: 600; font-size: 14px; color: var(--ink-2); transition: background-color .3s var(--ease), color .3s var(--ease); }
 .seg input:checked + span { background: var(--ink); color: var(--bg); }
 .seg input:focus-visible + span { outline: 2px solid var(--green); outline-offset: 2px; }
 .tally { display: grid; grid-template-columns: 1fr 1fr 1.4fr; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 1px var(--line) inset; }
@@ -445,7 +445,7 @@ textarea:focus, input[type="text"]:focus { outline: none; box-shadow: 0 0 0 2px 
   .forge .sec-head { position: static; }
   .compare { max-width: 480px; width: 100%; margin-inline: auto; }
   .viewer { grid-template-columns: 1fr; padding-top: 56px; }
-  .viewer__card .tcg { max-width: 280px; }
+  .viewer__card .tcg { max-width: min(280px, calc((100svh - 300px) * .716)); min-width: 150px; }
   .foot__in { grid-template-columns: 1fr; }
   .foot__legal { justify-self: start; text-align: left; }
   .dock { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: fixed; inset: auto 0 0; z-index: 40; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(18, 14, 12, .88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .45s var(--ease-out); }
@@ -476,6 +476,10 @@ textarea:focus, input[type="text"]:focus { outline: none; box-shadow: 0 0 0 2px 
 
 @media (hover: none) {
   .card-btn:hover .tcg, .btn:hover, .plan:hover, .spec:hover { transform: none; }
+  .btn--ig:hover { box-shadow: 4px 4px 0 #000; }
+  .btn:active { transform: translate(2px, 2px); }
+  .btn--ig:active { box-shadow: 1px 1px 0 #000; }
+  .card-btn:active .tcg { transform: scale(.97); transition-duration: .18s; }
 }
 
 @media (prefers-reduced-motion: reduce) {
