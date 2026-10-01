@@ -299,12 +299,12 @@ button { font: inherit; color: inherit; }
 .step:not(:last-child)::after { content: ""; position: absolute; top: 58px; right: 18px; width: 30px; height: 2px; background: repeating-linear-gradient(90deg, var(--line-2) 0 4px, transparent 4px 8px); }
 
 /* ---------- Preços ---------- */
-.plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: stretch; }
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 1040px; margin-inline: auto; gap: 16px; align-items: stretch; }
 .plan { position: relative; display: flex; flex-direction: column; padding: 28px 24px 24px; border-radius: var(--r-lg); background: var(--surface); box-shadow: 0 0 0 1px var(--line) inset; transition: transform .35s var(--ease-out), box-shadow .35s; }
 .plan:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px var(--line-2) inset, 0 30px 60px -30px #000; }
 .plan h3 { margin: 0; font: 700 12px/1 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
 .plan__from { display: block; margin-top: 22px; font: 500 12px/1 var(--f-mono); color: var(--ink-3); }
-.plan__price { display: flex; align-items: baseline; gap: 6px; margin: 8px 0 6px; white-space: nowrap; font-family: var(--f-display); font-weight: 800; letter-spacing: -.03em; }
+.plan__price { display: flex; align-items: baseline; gap: 6px; margin: 22px 0 6px; white-space: nowrap; font-family: var(--f-display); font-weight: 800; letter-spacing: -.03em; }
 .plan__price small { font-size: 16px; color: var(--ink-2); font-weight: 700; }
 .plan__price b { font-size: clamp(38px, 4vw, 48px); line-height: 1; letter-spacing: -.02em; }
 .plan__unit { font: 500 13px/1 var(--f-mono); color: var(--ink-3); }
@@ -429,7 +429,7 @@ textarea:focus, input[type="text"]:focus { outline: none; box-shadow: 0 0 0 2px 
 @media (max-width: 1020px) {
   .nav { display: none; }
   .menu-btn { display: block; }
-  .steps, .plans { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
   .step:nth-child(2)::after { display: none; }
 }
 
@@ -442,6 +442,8 @@ textarea:focus, input[type="text"]:focus { outline: none; box-shadow: 0 0 0 2px 
   .hero__stage { order: -1; max-width: 360px; width: 86%; margin-bottom: 8px; }
   .scroll-hint { display: none; }
   .quality, .forge, .faq { grid-template-columns: 1fr; }
+  .plans { grid-template-columns: 1fr; max-width: 480px; }
+  .plan--hl { order: -1; }
   .forge .sec-head { position: static; }
   .compare { max-width: 480px; width: 100%; margin-inline: auto; }
   .viewer { grid-template-columns: 1fr; padding-top: 56px; }

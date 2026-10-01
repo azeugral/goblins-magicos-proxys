@@ -1,8 +1,8 @@
 /* Montador de deck: lista → mesa com as artes → seletor de arte → encomenda. */
-import { C, $, $$, h, icon, toast, estimar, copiar, contato, store, reduced } from "./util.js";
-import { Catalogo, imagem, ROTULOS } from "./catalogo.js";
-import { lerLista } from "./parser.js";
-import { Pedido, artesDaCasa, codigoPedido, gerarLink, linhaTexto } from "./pedido-dados.js";
+import { C, $, $$, h, icon, toast, estimar, copiar, contato, store, reduced } from "./util.js?v=5";
+import { Catalogo, imagem, ROTULOS } from "./catalogo.js?v=5";
+import { lerLista } from "./parser.js?v=5";
+import { Pedido, artesDaCasa, codigoPedido, gerarLink, linhaTexto } from "./pedido-dados.js?v=5";
 
 const T0 = Date.now();
 const pedido = Pedido.carregar();
@@ -147,7 +147,7 @@ function faltandoLi(i) {
 
 /* ---------- Resumo ---------- */
 function resumo() {
-  const tot = pedido.total, foils = pedido.foils, est = estimar(tot, foils), falt = pedido.faltando.length;
+  const tot = pedido.total, foils = pedido.foils, est = estimar(pedido.infoPreco), falt = pedido.faltando.length;
   $("[data-r-total]").textContent = tot;
   $("[data-r-unicas]").textContent = new Set(pedido.validos.map((i) => i.n)).size;
   $("[data-r-foil]").textContent = foils;
@@ -385,7 +385,7 @@ let ultimo = null;
 
 $$("[data-finalizar]").forEach((b) => b.addEventListener("click", () => {
   if (!pedido.total) return;
-  const est = estimar(pedido.total, pedido.foils);
+  const est = estimar(pedido.infoPreco);
   const falt = pedido.faltando.length;
   $("[data-fim-resumo]").textContent = `${pedido.total} cartas · ${pedido.foils} foil · ${est.txt}${falt ? ` · ${falt} sem identificar` : ""}`;
   form.hidden = false; ok.hidden = true;
@@ -430,7 +430,7 @@ form.addEventListener("submit", async (e) => {
   btn.disabled = true; btn.textContent = "Enviando…";
   const codigo = codigoPedido();
   const link = await gerarLink(pedido, cli, codigo);
-  const est = estimar(pedido.total, pedido.foils);
+  const est = estimar(pedido.infoPreco);
   ultimo = { codigo, link };
   let enviado = false;
   if (cfgPedidos.emailEndpoint) {

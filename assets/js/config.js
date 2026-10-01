@@ -82,25 +82,27 @@ window.SITE = {
   ],
 
   /* ---------- Preços ----------
-     valor: número (ex.: 3.5) ou texto (ex.: "[R$ 0,00]"). */
+     valor: número (ex.: 2.5) ou texto.
+     aPartir: true mostra "a partir de" antes do valor. */
   precos: {
     moeda: "R$",
-    avisoEstimativa: "Valores de referência. O orçamento final sai na DM.",
+    avisoEstimativa: "Cartas dupla face (MDFC) custam R$ 1,80 a mais cada. O valor final é confirmado com você antes da produção.",
     planos: [
-      { id: "avulsa", titulo: "Avulsa", valor: "[0,00]", unidade: "por carta", descricao: "[Carta comum, sem foil]", destaque: false },
-      { id: "foil", titulo: "Foil / especial", valor: "[0,00]", unidade: "por carta", descricao: "[Foil, borderless, showcase…]", destaque: false },
-      { id: "deck", titulo: "Deck completo", valor: "[000,00]", unidade: "100 cartas", descricao: "[Commander pela sua lista. Sai mais barato por carta.]", destaque: true, selo: "Mais pedido" },
-      { id: "kit", titulo: "Kits", valor: "[00,00]", unidade: "por kit", descricao: "[Sets de terrenos, staples…]", destaque: false },
+      { id: "avulsa", titulo: "Avulsa", valor: 2.5, unidade: "por carta", descricao: "Carta comum, sem foil. Dupla face (MDFC): + R$ 1,80.", destaque: false },
+      { id: "deck", titulo: "Deck pronto", valor: 180, unidade: "99 cartas + comandante", descricao: "Commander completo pela sua lista. O comandante vai em foil, de brinde. Dupla face (MDFC): + R$ 1,80 cada.", destaque: true, selo: "Comandante foil de brinde" },
+      { id: "foil", titulo: "Foil", valor: 8, unidade: "por carta", descricao: "Acabamento foil. Dupla face (MDFC): + R$ 1,80.", destaque: false },
     ],
   },
 
   /* ---------- Montador de pedido ----------
-     Os números abaixo servem só para a ESTIMATIVA automática.
-     Deixe null para não mostrar valor (aparece "orçamento na DM"). */
+     Números usados na ESTIMATIVA automática do montador.
+     Deixe null para não mostrar valor (aparece "Sob consulta"). */
   montador: {
-    precoAvulsa: null,       // ex.: 3.5
-    precoFoil: null,         // ex.: 6
-    precoDeck100: null,      // ex.: 250 (aplicado quando o pedido tem 100 cartas ou mais)
+    precoAvulsa: 2.5,             // carta comum, sem foil
+    precoFoil: 8,                 // carta foil
+    precoDeck100: 180,            // deck pronto: 99 cartas + comandante (pedidos com 100 cartas ou mais)
+    precoDuplaFace: 1.8,          // acréscimo por carta dupla face (MDFC)
+    comandanteFoilBrinde: true,   // no deck pronto, o comandante foil não é cobrado
     exemploLista: "1 Sol Ring\n1 Arcane Signet\n1 Command Tower\n4 Lightning Bolt",
   },
 

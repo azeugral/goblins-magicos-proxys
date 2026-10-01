@@ -15,8 +15,8 @@ Quando você troca o texto, a borda some sozinha.
    - Em `vitrine`, preencha `nome` e `imagem` (ex.: `"assets/img/cartas/krark.webp"`). Em `tags`, você cria os filtros. Com `foil: true`, a carta ganha o brilho holográfico.
    - Carta sem `imagem` aparece como uma carta de exemplo com o goblin.
 4. **Qualidade:** textos e fotos de perto (papel, corte, foil, sleeve). A comparação "Original × Goblins Mágicos" aceita duas fotos da mesma carta.
-5. **Preços:** em `precos.planos`, os valores aparecem como "a partir de".
-6. **Estimativa do montador:** em `montador`, coloque os números (ex.: `precoAvulsa: 3.5`, `precoFoil: 6`, `precoDeck100: 250`). Se deixar `null`, o site mostra "Sob consulta".
+5. **Preços:** em `precos.planos` ficam os cards da tabela (hoje: Avulsa R$ 2,50, Deck pronto R$ 180 e Foil R$ 8). Use `aPartir: true` se quiser "a partir de" antes do valor.
+6. **Estimativa do montador:** em `montador`. Hoje: `precoAvulsa: 2.5`, `precoFoil: 8`, `precoDeck100: 180` (deck pronto, vale pra pedidos de 100 cartas ou mais), `precoDuplaFace: 1.8` (acréscimo por carta dupla face) e `comandanteFoilBrinde: true` (no deck, o comandante foil não é cobrado). Se algum preço ficar `null`, o site mostra "Sob consulta".
 7. **Artes da casa:** em `artesDaCasa`, liste as artes que você recomenda ou já tem prontas. Elas aparecem primeiro no seletor de arte, com o selo "Arte da casa", e viram a arte padrão da carta. Pode ser uma edição oficial (`set` + `num`) ou uma imagem sua (`imagem`).
 8. **Depoimentos e FAQ:** é só editar a lista.
 

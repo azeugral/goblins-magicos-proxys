@@ -50,16 +50,30 @@ export const moeda = () => (C.precos && C.precos.moeda) || "R$";
 export const brl = (n) => n.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const num = (v) => (typeof v === "number" && isFinite(v) ? v : null);
 
-/* Estimativa: não-foil usa preço de deck quando o pedido tem 100+ cartas. */
-export function estimar(total, foils) {
+/* Estimativa de preço.
+   info: { total, foils, dfc (cópias dupla face), cmdFoil (comandantes foil) }
+   - pedido com 100+ cartas: preço do deck pronto + avulsas extras; foil paga a diferença,
+     e no deck o comandante foil sai de brinde
+   - abaixo de 100: avulsa × comuns + foil × foils
+   - dupla face soma o acréscimo por cópia */
+export function estimar(a, b) {
+  const x = typeof a === "object" && a ? a : { total: a, foils: b || 0 };
+  const total = x.total || 0, foils = x.foils || 0, dfc = x.dfc || 0, cmdFoil = x.cmdFoil || 0;
   const M = C.montador || {};
-  const pa = num(M.precoAvulsa), pf = num(M.precoFoil), pd = num(M.precoDeck100);
-  const comuns = total - foils;
+  const pa = num(M.precoAvulsa), pf = num(M.precoFoil), pd = num(M.precoDeck100), pdf = num(M.precoDuplaFace) || 0;
   if (!total) return { valor: null, txt: "—", lbl: "estimativa" };
-  const precoComum = total >= 100 && pd != null ? pd / 100 : pa;
-  if ((comuns && precoComum == null) || (foils && pf == null)) return { valor: null, txt: "Sob consulta", lbl: "orçamento" };
-  const v = comuns * (precoComum || 0) + foils * (pf || 0);
-  return { valor: v, txt: `${moeda()} ${brl(v)}`, lbl: total >= 100 && pd != null ? "preço de deck" : "estimativa" };
+  const deck = pd != null && total >= 100;
+  const brinde = deck && M.comandanteFoilBrinde ? Math.min(cmdFoil, 1) : 0;
+  const foilsPagos = Math.max(0, foils - brinde);
+  if (pa == null || (foilsPagos && pf == null)) return { valor: null, txt: "Sob consulta", lbl: "orçamento" };
+  let v = deck
+    ? pd + (total - 100) * pa + foilsPagos * ((pf || 0) - pa)
+    : (total - foils) * pa + foils * (pf || 0);
+  v += dfc * pdf;
+  const partes = [deck ? "deck pronto" : "estimativa"];
+  if (brinde) partes.push("comandante foil de brinde");
+  if (dfc && pdf) partes.push(`${dfc} dupla face`);
+  return { valor: v, txt: `${moeda()} ${brl(v)}`, lbl: partes.join(" · ") };
 }
 
 export async function copiar(texto) {

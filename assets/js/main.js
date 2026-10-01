@@ -280,7 +280,7 @@
     plans.append(h("article", { class: "plan rv" + (p.destaque ? " plan--hl" : ""), style: `--i:${i}` },
       p.destaque && p.selo ? h("span", { class: "plan__badge", text: p.selo }) : null,
       h("h3", { text: p.titulo }),
-      h("span", { class: "plan__from", text: "a partir de" }),
+      p.aPartir ? h("span", { class: "plan__from", text: "a partir de" }) : null,
       h("div", { class: "plan__price" }, h("small", { text: moeda }), priceB),
       h("span", { class: "plan__unit", text: p.unidade }),
       h("p", { text: p.descricao }),
@@ -343,7 +343,7 @@
   function estimate(total) {
     const pa = num(M.precoAvulsa), pd = num(M.precoDeck100);
     if (!total) return { txt: "—", lbl: "estimativa" };
-    if (pd != null && total >= 100) return { txt: `${moeda} ${brl(pd * total / 100)}`, lbl: "preço de deck" };
+    if (pd != null && pa != null && total >= 100) return { txt: `${moeda} ${brl(pd + (total - 100) * pa)}`, lbl: "deck pronto, sem foil" };
     if (pa != null) return { txt: `${moeda} ${brl(pa * total)}`, lbl: "sem foil" };
     return { txt: "Sob consulta", lbl: "orçamento" };
   }

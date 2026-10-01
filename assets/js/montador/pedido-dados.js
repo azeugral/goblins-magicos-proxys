@@ -1,6 +1,6 @@
 /* Estado do pedido, artes da casa e o link compactado (#p=…).
    Nada vai pra servidor: o pedido inteiro viaja dentro do link. */
-import { C, store } from "./util.js";
+import { C, store } from "./util.js?v=5";
 
 const CHAVE = "goblins-montador";
 let uid = 0;
@@ -47,6 +47,15 @@ export class Pedido {
 
   get total() { return this.itens.reduce((s, i) => s + (i.n >= 0 ? i.q : 0), 0); }
   get foils() { return this.itens.reduce((s, i) => s + (i.n >= 0 && i.foil ? i.q : 0), 0); }
+  get infoPreco() {
+    const v = this.validos;
+    return {
+      total: this.total,
+      foils: this.foils,
+      dfc: v.reduce((s, i) => s + ((i.f || "").includes("d") ? i.q : 0), 0),
+      cmdFoil: v.reduce((s, i) => s + (i.sec === "cmd" && i.foil ? i.q : 0), 0),
+    };
+  }
   get validos() { return this.itens.filter((i) => i.n >= 0); }
   get faltando() { return this.itens.filter((i) => i.n < 0); }
 
