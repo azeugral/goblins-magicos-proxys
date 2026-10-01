@@ -75,8 +75,8 @@ window.SITE = {
 
   /* ---------- Como funciona ---------- */
   passos: [
-    { titulo: "Monte a lista", texto: "Use Moxfield, Archidekt, LigaMagic ou o montador aqui embaixo. Uma carta por linha." },
-    { titulo: "Mande na DM", texto: "O botão copia seu pedido pronto. É só colar na conversa do Instagram." },
+    { titulo: "Monte o deck", texto: "Cole a lista no montador ou busque carta por carta. Escolha a arte de cada uma e marque o que é foil." },
+    { titulo: "Envie a encomenda", texto: "Deixe seu contato e envie. O pedido chega pra gente com todas as artes escolhidas, e você fica com o link." },
     { titulo: "Orçamento e pagamento", texto: "[Como você passa o valor e quais formas de pagamento aceita]" },
     { titulo: "Produção e envio", texto: "[Prazo de produção e como envia]" },
   ],
@@ -103,6 +103,28 @@ window.SITE = {
     precoDeck100: null,      // ex.: 250 (aplicado quando o pedido tem 100 cartas ou mais)
     exemploLista: "1 Sol Ring\n1 Arcane Signet\n1 Command Tower\n4 Lightning Bolt",
   },
+
+  /* ---------- Encomendas pelo montador (montar.html) ----------
+     emailEndpoint: URL do Google Apps Script que manda o e-mail pra você
+                    (passo a passo no LEIA-ME.md, seção "E-mail das encomendas").
+                    Vazio = o cliente recebe só o link do pedido pra mandar na DM. */
+  pedidos: {
+    emailEndpoint: "",
+    respostaTexto: "A gente te chama pelo contato que você deixou com o orçamento e o prazo.",
+  },
+
+  /* ---------- Artes da casa ----------
+     Artes que você recomenda ou já tem prontas. Aparecem primeiro no seletor
+     de arte, com o selo "Arte da casa", e viram a arte padrão da carta.
+       Edição oficial:  { carta: "Krark, the Thumbless", set: "cmr", num: "189", nota: "Clássica" }
+       Arte própria:    { carta: "Krark, the Thumbless", imagem: "assets/img/artes/krark-hq.png", nota: "Versão HQ" }
+     A imagem própria deve ter 63×88 (ideal 744×1040 px ou maior). */
+  artesDaCasa: [
+  ],
+
+  /* Verso das cartas no PDF de impressão (frente e verso). Vazio = verso gerado com o logo.
+     Ex.: "assets/img/verso.png" (63×88, ideal 744×1040 px). */
+  versoCarta: "",
 
   /* ---------- Depoimentos ---------- */
   depoimentos: [

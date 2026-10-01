@@ -1,0 +1,32 @@
+name: Atualizar catálogo de cartas
+
+# Toda segunda às 06:00 (horário de Brasília) e também sob demanda (aba Actions → Run workflow).
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  catalogo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Gerar catálogo a partir do Scryfall
+        run: python tools/catalogo.py
+      - name: Publicar se mudou
+        run: |
+          if git diff --quiet -- data/; then
+            echo "Catálogo sem mudanças."
+            exit 0
+          fi
+          git config user.name "catalogo-bot"
+          git config user.email "catalogo-bot@users.noreply.github.com"
+          git add data/
+          git commit -m "Catálogo de cartas atualizado ($(date -u +%Y-%m-%d))"
+          git push

@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -32,9 +32,7 @@
         <a href="#precos">Preços</a>
         <a href="#faq">Dúvidas</a>
       </nav>
-      <a class="btn btn--sm btn--ig" data-ig-dm target="_blank" rel="noopener">
-        <svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg><span>Encomendar</span>
-      </a>
+      <a class="btn btn--sm btn--ig" href="montar.html"><span>Montar deck</span></a>
       <button class="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" data-menu-btn><span></span><span></span></button>
     </div>
   </header>
@@ -45,7 +43,7 @@
       <a href="#qualidade">Qualidade</a>
       <a href="#como">Como funciona</a>
       <a href="#precos">Preços</a>
-      <a href="#pedido">Montar pedido</a>
+      <a href="montar.html">Montar deck</a>
       <a href="#faq">Dúvidas</a>
     </nav>
     <a class="btn btn--ig btn--block" data-ig-dm target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Chamar no Instagram</a>
@@ -146,7 +144,7 @@
         <header class="sec-head" data-reveal>
           <p class="kicker">Pedido</p>
           <h2 class="sec-title">Monte seu pedido</h2>
-          <p class="sec-lead">Uma carta por linha, com a quantidade na frente. Listas exportadas do Moxfield, Archidekt e LigaMagic podem ser coladas direto.</p>
+          <p class="sec-lead">Uma carta por linha, com a quantidade na frente e o nome em inglês. Listas exportadas do Moxfield, Archidekt e LigaMagic podem ser coladas direto.</p>
           <ul class="forge__tips">
             <li><code>1 Sol Ring</code></li>
             <li><code>4x Lightning Bolt</code></li>
@@ -159,24 +157,6 @@
             <span class="field__lbl">Sua lista</span>
             <textarea name="lista" rows="10" spellcheck="false" autocomplete="off" data-forge-list></textarea>
           </label>
-          <div class="field-row">
-            <label class="field">
-              <span class="field__lbl">Acabamento</span>
-              <span class="seg" role="radiogroup" aria-label="Acabamento">
-                <label><input type="radio" name="acab" value="comum" checked><span>Comum</span></label>
-                <label><input type="radio" name="acab" value="foil"><span>Foil</span></label>
-                <label><input type="radio" name="acab" value="misto"><span>Misto</span></label>
-              </span>
-            </label>
-            <label class="field">
-              <span class="field__lbl">Seu nome <i>(opcional)</i></span>
-              <input type="text" name="nome" autocomplete="given-name" maxlength="60">
-            </label>
-          </div>
-          <label class="field">
-            <span class="field__lbl">Observações <i>(opcional)</i></span>
-            <input type="text" name="obs" maxlength="200" placeholder="Ex.: quero o comandante em foil, prazo até dia 20…">
-          </label>
 
           <div class="tally" aria-live="polite">
             <div><b data-t-total>0</b><span>cartas</span></div>
@@ -185,11 +165,11 @@
           </div>
 
           <div class="forge__actions">
-            <button class="btn btn--ig btn--lg btn--block" type="submit" data-forge-send><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Copiar pedido e abrir o Instagram</button>
-            <button class="btn btn--wa btn--block" type="button" data-forge-wa hidden><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Enviar pelo WhatsApp</button>
+            <button class="btn btn--ig btn--lg btn--block" type="submit">Escolher as artes e encomendar</button>
+            <button class="btn btn--ghost btn--block" type="button" data-forge-dm><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Só mandar a lista pela DM</button>
             <button class="linkbtn" type="button" data-forge-clear>Limpar lista</button>
           </div>
-          <p class="forge__note">O Instagram não aceita mensagem pronta pelo link. O pedido vai copiado; é só <b>colar</b> na conversa.</p>
+          <p class="forge__note">No montador você vê cada carta, escolhe a edição e a arte, marca o que é foil e envia a encomenda direto pra gente.</p>
         </form>
       </div>
     </section>
@@ -235,7 +215,7 @@
 
   <!-- Barra fixa no celular -->
   <div class="dock" data-dock>
-    <a class="btn btn--ghost" href="#pedido">Montar pedido</a>
+    <a class="btn btn--ghost" href="montar.html">Montar deck</a>
     <a class="btn btn--ig" data-ig-dm target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Instagram</a>
   </div>
 
@@ -265,7 +245,7 @@
     <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
   </svg>
 
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/config.js?v=2"></script>
+  <script src="assets/js/main.js?v=2"></script>
 </body>
 </html>

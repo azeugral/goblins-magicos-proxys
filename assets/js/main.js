@@ -274,7 +274,7 @@
     const val = typeof p.valor === "number" ? brl(p.valor) : p.valor;
     const priceB = h("b", { text: val });
     const cta = p.id === "deck"
-      ? h("a", { class: "btn btn--ig", href: "#pedido" }, "Montar meu deck")
+      ? h("a", { class: "btn btn--ig", href: "montar.html" }, "Montar meu deck")
       : h("a", { class: "btn btn--ghost", href: dmUrl, target: igOk ? "_blank" : null, rel: "noopener", "data-ig-dm": "" }, "Pedir na DM");
     if (!igOk && p.id !== "deck") cta.addEventListener("click", (e) => { e.preventDefault(); toast("Configure o @ do Instagram no config.js"); });
     plans.append(h("article", { class: "plan rv" + (p.destaque ? " plan--hl" : ""), style: `--i:${i}` },
@@ -311,7 +311,7 @@
   });
 
   /* =====================================================================
-     MONTADOR DE PEDIDO
+     LISTA RÁPIDA → MONTADOR (montar.html)
      ===================================================================== */
   const form = $("[data-forge]");
   const ta = $("[data-forge-list]");
@@ -320,13 +320,13 @@
   const saved = store.get("goblins-lista");
   if (saved) ta.value = saved;
 
-  const SKIP = /^(commander|comandante|deck|mainboard|main|sideboard|side|maybeboard|companion|about|name)\b.*:?\s*$/i;
+  const SECAO = /^(commander|comandante|deck|mainboard|main|sideboard|side|maybeboard|companion|tokens?)\b.*:?\s*$/i;
   function parse(text) {
     const out = new Map();
     text.split(/\r?\n/).forEach((raw) => {
-      let l = raw.trim();
-      if (!l || l.startsWith("//") || l.startsWith("#") || SKIP.test(l) || /:$/.test(l)) return;
-      l = l.replace(/\s+\([A-Z0-9]{2,6}\)\s*[\w-]*\s*(\*F\*)?$/i, "").replace(/\s+\*F\*$/i, "").trim(); // tira "(SET) 123" do Moxfield
+      let l = raw.trim().replace(/^SB:\s*/i, "");
+      if (!l || l.startsWith("//") || l.startsWith("#") || SECAO.test(l) || /:$/.test(l)) return;
+      l = l.replace(/\s+[([][A-Za-z0-9]{2,6}[)\]]\s*[\w★-]*\s*(\*[A-Z]\*)?$/i, "").replace(/\s+\*[A-Z]\*$/i, "").trim();
       const m = l.match(/^(\d{1,3})\s*x?\s+(.+)$/i);
       const qty = m ? parseInt(m[1], 10) : 1;
       const name = (m ? m[2] : l).trim();
@@ -340,32 +340,28 @@
 
   const tTotal = $("[data-t-total]"), tUnique = $("[data-t-unique]"), tPrice = $("[data-t-price]"), tLbl = $("[data-t-price-lbl]");
   const num = (v) => (typeof v === "number" && isFinite(v) ? v : null);
-  function estimate(total, acab) {
-    const pa = num(M.precoAvulsa), pf = num(M.precoFoil), pd = num(M.precoDeck100);
+  function estimate(total) {
+    const pa = num(M.precoAvulsa), pd = num(M.precoDeck100);
     if (!total) return { txt: "—", lbl: "estimativa" };
-    if (acab === "comum" && pd != null && total >= 100) return { txt: `${moeda} ${brl(pd * total / 100)}`, lbl: "preço de deck" };
-    if (acab === "comum" && pa != null) return { txt: `${moeda} ${brl(pa * total)}`, lbl: "estimativa" };
-    if (acab === "foil" && pf != null) return { txt: `${moeda} ${brl(pf * total)}`, lbl: "estimativa" };
-    if (acab === "misto" && pa != null && pf != null) return { txt: `${moeda} ${brl(pa * total)}–${brl(pf * total)}`, lbl: "faixa estimada" };
-    return { txt: "Na DM", lbl: "orçamento" };
+    if (pd != null && total >= 100) return { txt: `${moeda} ${brl(pd * total / 100)}`, lbl: "preço de deck" };
+    if (pa != null) return { txt: `${moeda} ${brl(pa * total)}`, lbl: "sem foil" };
+    return { txt: "Sob consulta", lbl: "orçamento" };
   }
 
   let last = { total: -1 };
   function update() {
     const list = parse(ta.value);
     const total = list.reduce((s, c) => s + c.qty, 0);
-    const acab = form.acab.value;
-    const est = estimate(total, acab);
+    const est = estimate(total);
     if (total !== last.total) { [tTotal, tUnique].forEach((b) => { b.classList.remove("bump"); void b.offsetWidth; b.classList.add("bump"); }); }
     tTotal.textContent = total;
     tUnique.textContent = list.length;
     tPrice.textContent = est.txt;
     tLbl.textContent = est.lbl;
-    last = { list, total, acab, est };
+    last = { list, total, est };
     store.set("goblins-lista", ta.value);
   }
   ta.addEventListener("input", update);
-  form.addEventListener("change", update);
   update();
 
   function addToList(name) {
@@ -382,21 +378,17 @@
       ta.value = (ta.value.trim() ? ta.value.replace(/\s+$/, "") + "\n" : "") + `1 ${name}`;
     }
     update();
-    toast(`Adicionada ao pedido · ${last.total} ${last.total === 1 ? "carta" : "cartas"}`);
+    toast(`Adicionada à lista · ${last.total} ${last.total === 1 ? "carta" : "cartas"}`);
   }
 
-  function message() {
-    const acabTxt = { comum: "Comum", foil: "Foil", misto: "Misto (comum + foil)" }[last.acab];
-    const nome = form.nome.value.trim(), obs = form.obs.value.trim();
-    const rows = [`Olá! Quero encomendar proxies na ${get("marca.nome") || "Goblins Mágicos Proxys"}.`, ""];
-    if (nome) rows.push(`Nome: ${nome}`);
-    rows.push(`Acabamento: ${acabTxt}`, `Total: ${last.total} cartas (${last.list.length} diferentes)`);
-    if (last.est.txt !== "Na DM") rows.push(`Estimativa do site: ${last.est.txt}`);
-    if (obs) rows.push(`Obs.: ${obs}`);
-    rows.push("", "Lista:", ...last.list.map((c) => `${c.qty} ${c.name}`));
-    return rows.join("\n");
-  }
+  // leva a lista pro montador, onde o cliente escolhe as artes e envia a encomenda
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (last.total) store.set("goblins-lista-importar", ta.value);
+    location.href = "montar.html";
+  });
 
+  // alternativa: mandar só a lista em texto pela DM
   async function copy(text) {
     try { await navigator.clipboard.writeText(text); return true; }
     catch {
@@ -406,25 +398,15 @@
       t.remove(); return ok;
     }
   }
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  $("[data-forge-dm]").addEventListener("click", async () => {
     if (!last.total) { toast("Cole sua lista de cartas primeiro"); ta.focus(); return; }
-    const win = igOk ? window.open("about:blank", "_blank") : null; // abre já no clique (evita bloqueio de pop-up)
-    const ok = await copy(message());
-    if (!igOk) { toast(ok ? "Pedido copiado · configure o @ no config.js" : "Não deu pra copiar"); return; }
-    toast(ok ? "Pedido copiado! Agora é só colar na DM" : "Copie a lista manualmente e cole na DM");
+    const msg = [`Olá! Quero encomendar proxies na ${get("marca.nome") || "Goblins Mágicos Proxys"}.`, `${last.total} cartas:`, "", ...last.list.map((c) => `${c.qty} ${c.name}`)].join("\n");
+    const win = igOk ? window.open("about:blank", "_blank") : null;
+    const ok = await copy(msg);
+    if (!igOk) { toast(ok ? "Lista copiada · configure o @ no config.js" : "Não deu pra copiar"); return; }
+    toast(ok ? "Lista copiada! Agora é só colar na DM" : "Copie a lista manualmente e cole na DM");
     setTimeout(() => { if (win) win.location.href = dmUrl; else location.href = dmUrl; }, 450);
   });
-
-  const waBtn = $("[data-forge-wa]");
-  if (wa) {
-    waBtn.hidden = false;
-    waBtn.addEventListener("click", () => {
-      if (!last.total) { toast("Cole sua lista de cartas primeiro"); ta.focus(); return; }
-      window.open(`https://wa.me/${wa}?text=${encodeURIComponent(message())}`, "_blank", "noopener");
-    });
-  }
   $("[data-forge-clear]").addEventListener("click", () => { ta.value = ""; update(); ta.focus(); });
 
   /* =====================================================================

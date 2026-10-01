@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Montador · Goblins Mágicos Proxys</title>
+  <meta name="description" content="Monte seu deck de proxies de Magic: cole a lista, escolha a arte de cada carta e envie a encomenda.">
+  <meta name="theme-color" content="#120e0c">
+  <link rel="icon" type="image/png" href="assets/img/favicon-64.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cards.scryfall.io">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <link rel="stylesheet" href="assets/css/app.css?v=2">
+</head>
+<body class="app-body">
+  <header class="app-top">
+    <a class="brand" href="./" aria-label="Voltar ao site">
+      <img src="assets/img/logo-192.webp" width="36" height="36" alt="">
+      <span class="brand__txt" data-bind="marca.nome"></span>
+    </a>
+    <span class="app-top__tit">Montador de deck</span>
+    <a class="linkbtn app-top__voltar" href="./">← Site</a>
+  </header>
+
+  <!-- Carregando catálogo -->
+  <div class="loader" data-loader>
+    <div class="loader__box">
+      <img src="assets/img/logo-192.webp" width="72" height="72" alt="">
+      <p class="loader__tit" data-loader-tit>Carregando o catálogo de cartas</p>
+      <div class="loader__bar"><span data-loader-bar></span></div>
+      <p class="loader__sub" data-loader-sub>Só na primeira visita. Depois abre na hora.</p>
+      <div class="loader__erro" data-loader-erro hidden>
+        <p>Não deu pra carregar o catálogo. Verifique a conexão e tente de novo.</p>
+        <button class="btn btn--ig" type="button" data-loader-retry>Tentar de novo</button>
+        <a class="linkbtn" href="./#pedido">Usar a lista simples</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="app" id="conteudo">
+    <!-- Coluna de controle -->
+    <aside class="lado">
+      <section class="bloco">
+        <h2 class="bloco__tit"><span>1</span>Sua lista</h2>
+        <label class="sr" for="lista">Cole a lista do seu deck</label>
+        <textarea id="lista" rows="7" spellcheck="false" autocomplete="off" data-lista placeholder="1 Sol Ring&#10;1 Arcane Signet&#10;4x Lightning Bolt&#10;1 Krark, the Thumbless (CMR) 189"></textarea>
+        <button class="btn btn--ig btn--block" type="button" data-importar><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-plus"/></svg>Adicionar à mesa</button>
+        <details class="dica">
+          <summary>Como exportar do Moxfield, Archidekt ou LigaMagic</summary>
+          <p><b>Moxfield:</b> no deck, More → Export → Copy for MTGA. <b>Archidekt:</b> Export → Text. <b>LigaMagic:</b> Exportar → Texto. Cole aqui. Set, número e <code>*F*</code> (foil) são reconhecidos.</p>
+        </details>
+      </section>
+
+      <section class="bloco">
+        <h2 class="bloco__tit"><span>2</span>Buscar carta</h2>
+        <div class="busca" data-busca>
+          <label class="sr" for="busca">Nome da carta em inglês</label>
+          <input id="busca" type="search" autocomplete="off" spellcheck="false" placeholder="Nome em inglês: ex. Rhystic Study" role="combobox" aria-expanded="false" aria-controls="busca-lista" aria-autocomplete="list" data-busca-input>
+          <ul id="busca-lista" class="busca__lista" role="listbox" data-busca-lista hidden></ul>
+        </div>
+      </section>
+
+      <section class="bloco bloco--resumo">
+        <h2 class="bloco__tit"><span>3</span>Resumo</h2>
+        <div class="tally tally--4" aria-live="polite">
+          <div><b data-r-total>0</b><span>cartas</span></div>
+          <div><b data-r-unicas>0</b><span>diferentes</span></div>
+          <div><b data-r-foil>0</b><span>foil</span></div>
+          <div class="tally__price"><b data-r-preco>—</b><span data-r-preco-lbl>estimativa</span></div>
+        </div>
+        <p class="aviso-faltando" data-r-faltando hidden></p>
+        <button class="btn btn--ig btn--lg btn--block" type="button" data-finalizar disabled>Finalizar encomenda</button>
+        <button class="linkbtn" type="button" data-limpar>Limpar mesa</button>
+      </section>
+    </aside>
+
+    <!-- Mesa (grade) -->
+    <section class="mesa" aria-label="Cartas do pedido">
+      <div class="mesa__barra">
+        <div class="chips chips--app" role="toolbar" aria-label="Filtrar" data-filtros>
+          <button class="chip" type="button" aria-pressed="true" data-f="todas">Todas</button>
+          <button class="chip" type="button" aria-pressed="false" data-f="foil">Foil</button>
+          <button class="chip" type="button" aria-pressed="false" data-f="faltando">Não encontradas</button>
+        </div>
+        <label class="ordem">Ordenar
+          <select data-ordem>
+            <option value="lista">Ordem da lista</option>
+            <option value="nome">Nome</option>
+          </select>
+        </label>
+      </div>
+      <ul class="grade" data-grade></ul>
+      <div class="vazio" data-vazio>
+        <img src="assets/img/logo-192.webp" width="88" height="88" alt="">
+        <p class="vazio__tit">A mesa está vazia</p>
+        <p>Cole a lista do deck ou busque cartas pelo nome. Depois toque em <b>Arte</b> pra escolher a edição de cada uma.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Barra fixa no celular -->
+  <div class="app-dock" data-app-dock>
+    <div class="app-dock__info"><b data-d-total>0 cartas</b><span data-d-preco>—</span></div>
+    <button class="btn btn--ig" type="button" data-finalizar disabled>Finalizar</button>
+  </div>
+
+  <!-- Seletor de arte -->
+  <dialog class="arte" data-arte aria-labelledby="arte-tit">
+    <header class="arte__top">
+      <div>
+        <h2 id="arte-tit" data-a-nome></h2>
+        <p data-a-pos></p>
+      </div>
+      <button class="icobtn" type="button" aria-label="Fechar" data-a-fechar><svg viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+    </header>
+    <div class="arte__corpo">
+      <div class="arte__preview">
+        <div class="arte__img" data-a-img></div>
+        <div class="arte__dados">
+          <b data-a-set></b>
+          <span data-a-tags></span>
+          <button class="btn btn--ghost btn--sm" type="button" data-a-virar hidden>Ver o verso</button>
+        </div>
+      </div>
+      <div class="arte__opcoes">
+        <div class="arte__filtros">
+          <div class="chips chips--app" role="toolbar" aria-label="Filtrar artes" data-a-filtros></div>
+          <select aria-label="Ordem" data-a-ordem>
+            <option value="novo">Mais recentes</option>
+            <option value="velho">Mais antigas</option>
+          </select>
+        </div>
+        <ul class="arte__grade" data-a-grade></ul>
+      </div>
+    </div>
+    <footer class="arte__pe">
+      <label class="check" data-a-todas-wrap><input type="checkbox" checked data-a-todas><span data-a-todas-txt>Aplicar em todas as cópias</span></label>
+      <div class="arte__nav">
+        <button class="btn btn--ghost btn--sm" type="button" data-a-ant aria-label="Carta anterior">←</button>
+        <button class="btn btn--ghost btn--sm" type="button" data-a-prox aria-label="Próxima carta">→</button>
+        <button class="btn btn--ig btn--sm" type="button" data-a-ok>Pronto</button>
+      </div>
+    </footer>
+  </dialog>
+
+  <!-- Finalizar -->
+  <dialog class="fim" data-fim aria-labelledby="fim-tit">
+    <button class="icobtn fim__x" type="button" aria-label="Fechar" data-fim-fechar><svg viewBox="0 0 24 24"><use href="#i-x"/></svg></button>
+
+    <form class="fim__passo" data-fim-form novalidate>
+      <h2 id="fim-tit" class="fim__tit">Seus dados</h2>
+      <p class="fim__resumo" data-fim-resumo></p>
+      <label class="field"><span class="field__lbl">Nome</span><input type="text" name="nome" required maxlength="60" autocomplete="name"></label>
+      <div class="field-row field-row--contato">
+        <label class="field"><span class="field__lbl">Falar por</span>
+          <select name="tipo">
+            <option value="instagram">Instagram</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="email">E-mail</option>
+          </select>
+        </label>
+        <label class="field"><span class="field__lbl">Contato</span><input type="text" name="contato" required maxlength="80" placeholder="@seu_usuario" autocomplete="off"></label>
+      </div>
+      <label class="field"><span class="field__lbl">Cidade <i>(opcional)</i></span><input type="text" name="cidade" maxlength="60" autocomplete="address-level2"></label>
+      <label class="field"><span class="field__lbl">Observações <i>(opcional)</i></span><textarea name="obs" rows="2" maxlength="400" placeholder="Prazo, sleeves, o que quiser combinar"></textarea></label>
+      <label class="hp" aria-hidden="true">Site<input type="text" name="site" tabindex="-1" autocomplete="off"></label>
+      <label class="check"><input type="checkbox" name="lgpd" required><span>Autorizo o uso destes dados só para esta encomenda.</span></label>
+      <p class="fim__erro" data-fim-erro hidden></p>
+      <button class="btn btn--ig btn--lg btn--block" type="submit" data-fim-enviar>Enviar encomenda</button>
+    </form>
+
+    <div class="fim__passo" data-fim-ok hidden>
+      <p class="fim__selo" data-ok-selo></p>
+      <h2 class="fim__tit" data-ok-tit></h2>
+      <p data-ok-txt></p>
+      <div class="fim__link"><input type="text" readonly data-ok-link aria-label="Link do pedido"><button class="btn btn--ghost btn--sm" type="button" data-ok-copiar>Copiar</button></div>
+      <div class="fim__acoes">
+        <button class="btn btn--ig btn--block" type="button" data-ok-ig><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Enviar pelo Instagram</button>
+        <a class="btn btn--wa btn--block" data-ok-wa target="_blank" rel="noopener" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Enviar pelo WhatsApp</a>
+        <button class="linkbtn" type="button" data-ok-novo>Começar outro pedido</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path fill="currentColor" d="M9.2 8.3c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c.6 1.1 1.4 1.9 2.5 2.5l.6-.6c.2-.2.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3 0 .5-.4.7-.5.3-1.3.5-2 .3-2.3-.6-4.6-2.9-5.2-5.2-.2-.7 0-1.5.1-2z"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 12h14"/></symbol>
+    <symbol id="i-flip" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 9a8 8 0 0 1 14-3l2 2M20 15a8 8 0 0 1-14 3l-2-2M20 4v4h-4M4 20v-4h4"/></symbol>
+  </svg>
+
+  <script src="assets/js/config.js?v=2"></script>
+  <script type="module" src="assets/js/montador/montar.js?v=2"></script>
+</body>
+</html>

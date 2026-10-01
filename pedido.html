@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pedido · Goblins Mágicos Proxys</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#120e0c">
+  <link rel="icon" type="image/png" href="assets/img/favicon-64.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cards.scryfall.io">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <link rel="stylesheet" href="assets/css/app.css?v=2">
+</head>
+<body class="app-body">
+  <header class="app-top">
+    <a class="brand" href="./" aria-label="Ir ao site">
+      <img src="assets/img/logo-192.webp" width="36" height="36" alt="">
+      <span class="brand__txt" data-bind="marca.nome"></span>
+    </a>
+    <span class="app-top__tit">Pedido</span>
+    <a class="linkbtn app-top__voltar" href="montar.html">Montador →</a>
+  </header>
+
+  <div class="loader" data-loader>
+    <div class="loader__box">
+      <img src="assets/img/logo-192.webp" width="72" height="72" alt="">
+      <p class="loader__tit" data-loader-tit>Abrindo o pedido</p>
+      <div class="loader__bar"><span data-loader-bar></span></div>
+      <p class="loader__sub" data-loader-sub>Carregando o catálogo de cartas…</p>
+      <div class="loader__erro" data-loader-erro hidden>
+        <p data-loader-msg>Não deu pra abrir este pedido.</p>
+        <button class="btn btn--ig" type="button" data-loader-retry>Tentar de novo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sem link -->
+  <section class="sem-pedido" data-sem hidden>
+    <img src="assets/img/logo-192.webp" width="88" height="88" alt="" style="border-radius:50%">
+    <h1>Abra pelo link do pedido</h1>
+    <p>Esta página mostra uma encomenda feita no montador. Cole abaixo o link que chegou por e-mail ou pela DM.</p>
+    <form class="fim__link" data-colar style="width:100%">
+      <input type="text" placeholder="https://…/pedido.html#p=…" aria-label="Link do pedido" required>
+      <button class="btn btn--ig btn--sm" type="submit">Abrir</button>
+    </form>
+  </section>
+
+  <main class="painel" id="conteudo" data-painel hidden>
+    <section class="painel__topo">
+      <div>
+        <p class="kicker" data-p-data></p>
+        <h1 data-p-tit></h1>
+        <p class="painel__cli" data-p-cli></p>
+        <p class="painel__obs" data-p-obs hidden></p>
+      </div>
+      <div class="tally tally--4 painel__tally">
+        <div><b data-p-total>0</b><span>cartas</span></div>
+        <div><b data-p-unicas>0</b><span>diferentes</span></div>
+        <div><b data-p-foil>0</b><span>foil</span></div>
+        <div class="tally__price"><b data-p-preco>—</b><span data-p-preco-lbl>estimativa</span></div>
+      </div>
+    </section>
+
+    <div class="painel__corpo">
+      <section aria-label="Cartas do pedido">
+        <div class="mesa__barra">
+          <div class="chips chips--app" role="toolbar" aria-label="Filtrar" data-p-filtros>
+            <button class="chip" type="button" aria-pressed="true" data-f="todas">Todas</button>
+            <button class="chip" type="button" aria-pressed="false" data-f="foil">Foil</button>
+            <button class="chip" type="button" aria-pressed="false" data-f="falta">Falta imprimir</button>
+          </div>
+          <span class="ordem" data-p-feito></span>
+        </div>
+        <ul class="lista-ped" data-p-grade></ul>
+        <div class="caixa" data-p-faltando hidden style="margin-top:24px">
+          <h2>Nomes que o cliente digitou e não foram encontrados</h2>
+          <ul data-p-faltando-lista style="margin:0;padding-left:18px;color:var(--ink-2)"></ul>
+        </div>
+      </section>
+
+      <aside class="painel__lado">
+        <div class="caixa">
+          <h2>Lista</h2>
+          <div class="painel__acoes">
+            <button class="btn btn--ghost btn--sm" type="button" data-x-copiar>Copiar lista</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-x-txt>.txt</button>
+            <button class="btn btn--ghost btn--sm" type="button" data-x-csv>.csv</button>
+          </div>
+        </div>
+
+        <form class="caixa" data-pdf>
+          <h2>Folhas de impressão (PDF)</h2>
+          <div class="field-row">
+            <label class="field"><span class="field__lbl">Papel</span>
+              <select name="papel"><option value="a4">A4</option><option value="carta">Carta</option><option value="a3">A3</option></select></label>
+            <label class="field"><span class="field__lbl">Espaço</span>
+              <select name="gap"><option value="0">Sem espaço</option><option value="0.2" selected>0,2 mm</option><option value="3">3 mm</option></select></label>
+            <label class="field"><span class="field__lbl">Sangria</span>
+              <select name="bleed"><option value="0">Sem</option><option value="1">1 mm</option><option value="2" selected>2 mm</option><option value="3">3 mm</option></select></label>
+            <label class="field"><span class="field__lbl">Cantos</span>
+              <select name="cantos"><option value="auto">Cor da borda</option><option value="preto">Pretos</option></select></label>
+          </div>
+          <div class="opcoes">
+            <label class="check"><input type="checkbox" name="marcas" checked><span>Marcas de corte</span></label>
+            <label class="check"><input type="checkbox" name="basicos"><span>Pular terrenos básicos</span></label>
+            <label class="check"><input type="checkbox" name="foilSep" checked><span>Foil em folhas separadas</span></label>
+            <label class="check"><input type="checkbox" name="versos"><span>Frente e verso (verso da casa + verso das cartas dupla face)</span></label>
+            <label class="check"><input type="checkbox" name="soFalta"><span>Só o que falta imprimir</span></label>
+          </div>
+          <div class="prog" data-pdf-prog hidden>
+            <div class="loader__bar"><span data-pdf-bar></span></div>
+            <p data-pdf-txt></p>
+          </div>
+          <button class="btn btn--ig btn--block" type="submit" data-pdf-btn>Gerar PDF</button>
+          <p class="loader__sub">Imagens em ~300 DPI. A geração acontece toda neste computador.</p>
+        </form>
+      </aside>
+    </div>
+  </main>
+
+  <input type="file" accept="image/*" hidden data-upload>
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-flip" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 9a8 8 0 0 1 14-3l2 2M20 15a8 8 0 0 1-14 3l-2-2M20 4v4h-4M4 20v-4h4"/></symbol>
+  </svg>
+
+  <script src="assets/js/config.js?v=2"></script>
+  <script type="module" src="assets/js/montador/pedido.js?v=2"></script>
+</body>
+</html>
