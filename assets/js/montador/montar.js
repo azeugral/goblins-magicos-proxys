@@ -1,8 +1,8 @@
 /* Montador de deck: lista → mesa com as artes → seletor de arte → encomenda. */
-import { C, $, $$, h, icon, toast, estimar, copiar, contato, store, reduced } from "./util.js?v=5";
-import { Catalogo, imagem, ROTULOS } from "./catalogo.js?v=5";
-import { lerLista } from "./parser.js?v=5";
-import { Pedido, artesDaCasa, codigoPedido, gerarLink, linhaTexto } from "./pedido-dados.js?v=5";
+import { C, $, $$, h, icon, toast, estimar, copiar, contato, store, reduced } from "./util.js?v=6";
+import { Catalogo, imagem, ROTULOS } from "./catalogo.js?v=6";
+import { lerLista } from "./parser.js?v=6";
+import { Pedido, artesDaCasa, codigoPedido, gerarLink, linhaTexto } from "./pedido-dados.js?v=6";
 
 const T0 = Date.now();
 const pedido = Pedido.carregar();

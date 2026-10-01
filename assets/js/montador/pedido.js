@@ -1,9 +1,9 @@
 /* Painel do pedido (para o dono): abre o link #p=…, confere, marca o que já
    foi impresso, troca por arte própria e gera o PDF de impressão. */
-import { C, $, $$, h, icon, toast, estimar, copiar, baixar, store } from "./util.js?v=5";
-import { Catalogo, imagem, ROTULOS, idbGet, idbSet, idbDel } from "./catalogo.js?v=5";
-import { lerLink, edicaoPorSetNum, linhaTexto } from "./pedido-dados.js?v=5";
-import { gerarPdf, versoDaCasa } from "./pdf.js?v=5";
+import { C, $, $$, h, icon, toast, estimar, copiar, baixar, store } from "./util.js?v=6";
+import { Catalogo, imagem, ROTULOS, idbGet, idbSet, idbDel } from "./catalogo.js?v=6";
+import { lerLink, edicaoPorSetNum, linhaTexto } from "./pedido-dados.js?v=6";
+import { gerarPdf, versoDaCasa } from "./pdf.js?v=6";
 
 $$("[data-bind]").forEach((el) => {
   const v = el.dataset.bind.split(".").reduce((o, k) => (o == null ? o : o[k]), C);
@@ -83,6 +83,7 @@ function topo() {
   const est = estimar({
     total: tot, foils: fo,
     dfc: val.reduce((s, i) => s + ((i.f || "").includes("d") ? i.q : 0), 0),
+    dfcFoil: val.reduce((s, i) => s + ((i.f || "").includes("d") && i.foil ? i.q : 0), 0),
     cmdFoil: val.reduce((s, i) => s + (i.sec === "cmd" && i.foil ? i.q : 0), 0),
   });
   $("[data-p-total]").textContent = tot;

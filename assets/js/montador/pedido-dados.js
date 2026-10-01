@@ -1,6 +1,6 @@
 /* Estado do pedido, artes da casa e o link compactado (#p=…).
    Nada vai pra servidor: o pedido inteiro viaja dentro do link. */
-import { C, store } from "./util.js?v=5";
+import { C, store } from "./util.js?v=6";
 
 const CHAVE = "goblins-montador";
 let uid = 0;
@@ -53,6 +53,7 @@ export class Pedido {
       total: this.total,
       foils: this.foils,
       dfc: v.reduce((s, i) => s + ((i.f || "").includes("d") ? i.q : 0), 0),
+      dfcFoil: v.reduce((s, i) => s + ((i.f || "").includes("d") && i.foil ? i.q : 0), 0),
       cmdFoil: v.reduce((s, i) => s + (i.sec === "cmd" && i.foil ? i.q : 0), 0),
     };
   }

@@ -88,11 +88,11 @@ window.SITE = {
      imagem (opcional): mostra uma carta pequena no canto do card. */
   precos: {
     moeda: "R$",
-    avisoEstimativa: "Cartas dupla face (MDFC) custam R$ 1,80 a mais cada. O valor final é confirmado com você antes da produção.",
+    avisoEstimativa: "Carta dupla face (MDFC) acompanha o valor da original: as duas faces são impressas. O valor final é confirmado com você antes da produção.",
     planos: [
-      { id: "avulsa", titulo: "Avulsa", valor: 2.5, unidade: "por carta", descricao: "Carta comum, sem foil. Dupla face (MDFC): + R$ 1,80.", destaque: false },
+      { id: "avulsa", titulo: "Avulsa", valor: 2.5, unidade: "por carta", descricao: "Carta comum, sem foil. Dupla face (MDFC): R$ 5,00.", destaque: false },
       { id: "deck", titulo: "Deck pronto", imagem: "assets/img/cartas/thorin-oakenshield.webp", valor: 180, unidade: "99 cartas + comandante", descricao: "Commander completo pela sua lista. O comandante vai em foil, de brinde. Dupla face (MDFC): + R$ 1,80 cada.", destaque: true, selo: "Comandante foil de brinde" },
-      { id: "foil", titulo: "Foil", valor: 8, unidade: "por carta", descricao: "Acabamento foil. Dupla face (MDFC): + R$ 1,80.", destaque: false },
+      { id: "foil", titulo: "Foil", valor: 8, unidade: "por carta", descricao: "Acabamento foil. Dupla face (MDFC) foil: R$ 16,00.", destaque: false },
     ],
   },
 
@@ -103,7 +103,9 @@ window.SITE = {
     precoAvulsa: 2.5,             // carta comum, sem foil
     precoFoil: 8,                 // carta foil
     precoDeck100: 180,            // deck pronto: 99 cartas + comandante (pedidos com 100 cartas ou mais)
-    precoDuplaFace: 1.8,          // acréscimo por carta dupla face (MDFC)
+    precoAvulsaDuplaFace: 5,      // carta dupla face (MDFC), sem foil
+    precoFoilDuplaFace: 16,       // carta dupla face (MDFC), foil
+    precoDuplaFaceNoDeck: 1.8,    // acréscimo por carta dupla face dentro do deck pronto
     comandanteFoilBrinde: true,   // no deck pronto, o comandante foil não é cobrado
     exemploLista: "1 Thorin Oakenshield\n1 Sol Ring\n1 Arcane Signet\n4 Lightning Bolt",
   },

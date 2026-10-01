@@ -16,7 +16,7 @@ Quando você troca o texto, a borda some sozinha.
    - Carta sem `imagem` aparece como uma carta de exemplo com o goblin.
 4. **Qualidade:** textos e fotos de perto (papel, corte, foil, sleeve). A comparação "Original × Goblins Mágicos" aceita duas fotos da mesma carta.
 5. **Preços:** em `precos.planos` ficam os cards da tabela (hoje: Avulsa R$ 2,50, Deck pronto R$ 180 e Foil R$ 8). Use `aPartir: true` se quiser "a partir de" antes do valor.
-6. **Estimativa do montador:** em `montador`. Hoje: `precoAvulsa: 2.5`, `precoFoil: 8`, `precoDeck100: 180` (deck pronto, vale pra pedidos de 100 cartas ou mais), `precoDuplaFace: 1.8` (acréscimo por carta dupla face) e `comandanteFoilBrinde: true` (no deck, o comandante foil não é cobrado). Se algum preço ficar `null`, o site mostra "Sob consulta".
+6. **Estimativa do montador:** em `montador`. Hoje: `precoAvulsa: 2.5`, `precoFoil: 8`, `precoDeck100: 180` (deck pronto, vale pra pedidos de 100 cartas ou mais), `precoAvulsaDuplaFace: 5` e `precoFoilDuplaFace: 16` (carta dupla face, que acompanha o valor da original), `precoDuplaFaceNoDeck: 1.8` (acréscimo por dupla face dentro do deck pronto) e `comandanteFoilBrinde: true` (no deck, o comandante foil não é cobrado). Se algum preço ficar `null`, o site mostra "Sob consulta".
 7. **Artes da casa:** em `artesDaCasa`, liste as artes que você recomenda ou já tem prontas. Elas aparecem primeiro no seletor de arte, com o selo "Arte da casa", e viram a arte padrão da carta. Pode ser uma edição oficial (`set` + `num`) ou uma imagem sua (`imagem`).
 8. **Depoimentos e FAQ:** é só editar a lista.
 
