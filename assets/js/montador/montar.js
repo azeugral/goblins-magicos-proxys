@@ -159,6 +159,10 @@ function resumo() {
   fa.hidden = !falt;
   fa.textContent = falt ? `${falt} ${falt === 1 ? "nome não foi encontrado" : "nomes não foram encontrados"}. Corrija na mesa ou eles vão como texto.` : "";
   $$("[data-finalizar]").forEach((b) => (b.disabled = !tot));
+  const tem = pedido.itens.length > 0;
+  $("[data-limpar]").hidden = !tem;
+  $("[data-m-barra]").hidden = !tem;
+  $("[data-m-conta]").textContent = tem ? `· ${tot} ${tot === 1 ? "carta" : "cartas"}` : "";
   $("[data-app-dock]").classList.toggle("is-on", tot > 0);
 }
 
@@ -176,10 +180,36 @@ $("[data-importar]").addEventListener("click", () => {
   if (matchMedia("(max-width: 900px)").matches) $(".mesa").scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
 });
 
-$("[data-limpar]").addEventListener("click", () => {
+/* Limpar mesa: confirma no próprio botão (2 toques) e permite desfazer */
+const btnLimpar = $("[data-limpar]");
+let limparT, backup = null;
+const txtLimpar = () => btnLimpar.lastChild;
+btnLimpar.addEventListener("click", () => {
   if (!pedido.itens.length) return;
-  if (confirm("Tirar todas as cartas da mesa?")) { pedido.limpar(); toast("Mesa limpa"); }
+  if (!btnLimpar.classList.contains("is-armado")) {
+    btnLimpar.classList.add("is-armado");
+    txtLimpar().textContent = "Toque de novo pra limpar";
+    clearTimeout(limparT);
+    limparT = setTimeout(desarmar, 3000);
+    return;
+  }
+  desarmar();
+  backup = JSON.parse(JSON.stringify(pedido.itens));
+  pedido.limpar();
+  toastDesfazer();
 });
+function desarmar() { btnLimpar.classList.remove("is-armado"); txtLimpar().textContent = "Limpar mesa"; }
+function toastDesfazer() {
+  toast("Mesa limpa");
+  const el = $("[data-toast]");
+  const b = h("button", { class: "toast__acao", type: "button", onclick: () => {
+    if (!backup) return;
+    pedido.itens = backup; backup = null;
+    pedido.mudou({ tipo: "lista" });
+    toast("Cartas de volta na mesa");
+  } }, "Desfazer");
+  el.append(" ", b);
+}
 
 $$("[data-filtros] .chip").forEach((b) => b.addEventListener("click", () => {
   filtro = b.dataset.f;

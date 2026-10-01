@@ -39,7 +39,6 @@ body.trava { overflow: hidden; }
 .dica p { margin: 8px 0 0; line-height: 1.55; }
 .dica code { font: 500 12px var(--f-mono); color: var(--ink); }
 .bloco--resumo { padding-top: 18px; border-top: 1px solid var(--line); }
-.bloco--resumo .linkbtn { justify-self: center; }
 .tally--4 { grid-template-columns: repeat(3, 1fr); }
 .tally--4 .tally__price { grid-column: 1 / -1; border-left: 0 !important; border-top: 1px solid var(--line); }
 .aviso-faltando { margin: 0; padding: 10px 12px; font-size: 13px; color: #ffcf9e; background: rgba(244, 123, 42, .1); box-shadow: inset 2px 0 0 var(--orange); }
@@ -54,6 +53,21 @@ body.trava { overflow: hidden; }
 
 /* ---------- Mesa ---------- */
 .mesa { padding: 22px var(--gutter) 120px; min-width: 0; }
+.mesa__topo { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px 24px; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.mesa__txt { max-width: 62ch; }
+.mesa__tit { margin: 0 0 6px; font: 700 clamp(20px, 2.2vw, 26px)/1.15 var(--f-display); letter-spacing: -.03em; }
+.mesa__tit span { font: 600 13px/1 var(--f-mono); letter-spacing: 0; color: var(--green); vertical-align: middle; }
+.mesa__txt p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+.btn--limpar { flex: none; --bgc: transparent; --fg: #ffb4a3; box-shadow: 0 0 0 1.5px rgba(222, 59, 32, .55) inset; }
+.btn--limpar svg { width: 18px; height: 18px; transition: transform .35s var(--ease); }
+.btn--limpar:hover { --bgc: rgba(222, 59, 32, .12); --fg: #fff5e6; box-shadow: 0 0 0 1.5px var(--red) inset, 4px 4px 0 #000; }
+.btn--limpar:hover svg { transform: rotate(-12deg); }
+.btn--limpar.is-armado { --bgc: var(--red); --fg: #fff5e6; box-shadow: 4px 4px 0 #000; animation: armar .35s var(--ease); }
+@keyframes armar { 30% { transform: translateX(-3px); } 60% { transform: translateX(3px); } }
+.toast { display: flex; align-items: center; gap: 12px; pointer-events: none; }
+.toast.is-on { pointer-events: auto; }
+.toast__acao { border: 0; padding: 6px 10px; background: var(--bg); color: var(--green); font: 700 13px/1 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; cursor: pointer; transition: background-color .3s var(--ease), color .3s var(--ease); }
+.toast__acao:hover { background: var(--green); color: var(--bg); }
 .mesa__barra { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
 .chips--app { margin: 0; padding: 2px; overflow-x: auto; flex-wrap: nowrap; }
 .ordem { display: flex; align-items: center; gap: 8px; font: 500 12px/1 var(--f-mono); color: var(--ink-3); text-transform: uppercase; letter-spacing: .1em; }
@@ -248,6 +262,8 @@ select:focus { outline: none; box-shadow: 0 0 0 2px var(--green) inset; }
   .tog { height: 40px; }
   .field-row--contato { grid-template-columns: 1fr; }
   .mesa__barra { flex-direction: column; align-items: stretch; }
+  .mesa__topo { flex-direction: column; }
+  .btn--limpar { align-self: stretch; }
   .ordem { justify-content: space-between; }
   .arte__filtros { gap: 8px; }
   .arte__filtros select { flex: none; width: 128px; padding-right: 30px; font-size: 14px; }
