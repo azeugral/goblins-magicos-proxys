@@ -14,18 +14,18 @@ window.SITE = {
     nome: "Goblins Mágicos Proxys",
     instagram: "[seu_usuario]",          // só o @, sem o "@". Ex.: "goblinsmagicos"
     whatsapp: "",                         // opcional. Só números com DDI+DDD. Ex.: "5511999999999". Vazio = esconde o botão
-    cidade: "[Sua cidade — UF]",
+    cidade: "Americana - SP",
     email: "",                            // opcional
   },
 
   /* ---------- Topo da página ---------- */
   hero: {
-    selo: "Encomendas abertas · [Sua cidade]",
+    selo: "Encomendas abertas · Americana - SP",
     titulo: ["Proxies de TCG", "para mesa casual", "e playtest"],   // até 3 linhas; a 2ª ganha destaque
     subtitulo: "Cartas impressas e cortadas em 63×88 mm, com opção de foil. Mande a lista do seu deck pelo Instagram e receba o orçamento.",
     ctaPrincipal: "Encomendar no Instagram",
     ctaSecundario: "Ver a vitrine",
-    miniProvas: ["[000+ cartas entregues]", "[Papel 000g]", "Envio pra todo o Brasil"],
+    miniProvas: ["Envio pra todo o Brasil"],
   },
 
   /* ---------- Faixa de selos (rola sozinha) ---------- */
