@@ -115,8 +115,11 @@ button { font: inherit; color: inherit; }
 .topbar.is-hidden { transform: translateY(-100%); }
 .topbar__in { height: 100%; display: flex; align-items: center; gap: 24px; }
 .brand { flex: none; display: flex; align-items: center; gap: 10px; text-decoration: none; margin-right: auto; }
-.brand img { border-radius: 50%; box-shadow: 0 0 0 2px var(--ink); }
-.brand__txt { font: 700 clamp(12px, 1.15vw, 15px)/1 var(--f-display); letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; }
+.brand img { border-radius: 50%; }
+.brand__txt { display: grid; line-height: 1; white-space: nowrap; }
+.brand__nome { font: 700 21px/1 "Almendra", Georgia, serif; letter-spacing: .01em; color: #d8f1e6; -webkit-text-stroke: .6px #0d2a26; text-shadow: 0 2px 0 #0d2a26, 0 0 12px rgba(120, 220, 200, .18); }
+.brand__proxys { justify-self: end; margin: -5px 2px 0 0; font: 400 15px/1 "Permanent Marker", "Comic Sans MS", cursive; letter-spacing: .06em; text-transform: uppercase; color: #f3e6c8; transform: rotate(-5deg); text-shadow: 2px 2px 0 #3b1d55, -1px -1px 0 #3b1d55; transition: transform .35s var(--ease); }
+.brand:hover .brand__proxys { transform: rotate(-8deg) translateY(-1px); }
 .nav { display: flex; gap: 4px; }
 .nav a { text-decoration: none; font-weight: 600; font-size: 15px; color: var(--ink-2); padding: 8px 12px; border-radius: 0; transition: color .2s, background-color .2s; }
 .nav a:hover, .nav a.is-active { color: var(--ink); background: rgba(243, 230, 200, .07); }
@@ -485,7 +488,8 @@ textarea:focus, input[type="text"]:focus { outline: none; box-shadow: 0 0 0 2px 
 @media (max-width: 560px) {
   .brand { gap: 8px; }
   .brand img { width: 34px; height: 34px; }
-  .brand__txt { font-size: 11px; }
+  .brand__nome { font-size: 17px; }
+  .brand__proxys { font-size: 12px; margin-top: -4px; }
   .steps, .plans, .specs { grid-template-columns: 1fr; }
   .step { display: grid; grid-template-columns: auto 1fr; column-gap: 18px; padding: 22px 20px; }
   .step::before { grid-row: span 2; font-size: 56px; margin: 0; }
