@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Almendra:wght@700&family=Permanent+Marker&family=Unbounded:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=13">
+  <link rel="stylesheet" href="assets/css/style.css?v=15">
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -207,8 +207,11 @@
   <footer class="foot">
     <div class="wrap foot__in">
       <div class="foot__brand">
-        <img src="assets/img/logo-192.webp" width="48" height="48" alt="">
-        <div><b data-bind="marca.nome"></b><span data-bind="marca.cidade"></span></div>
+        <img src="assets/img/logo-192.webp" width="64" height="64" alt="">
+        <div>
+          <span class="brand__txt foot__marca" aria-label="Goblins Mágicos Proxys"><span class="brand__nome">Goblins Mágicos</span><span class="brand__proxys">Proxys</span></span>
+          <span class="foot__cidade" data-bind="marca.cidade"></span>
+        </div>
       </div>
       <p class="foot__legal" data-bind="rodape.aviso"></p>
       <div class="foot__meta"><span>© <span data-year></span> <span data-bind="marca.nome"></span></span><span class="assinatura">Site por <a href="https://lrgz.com.br" target="_blank" rel="noopener" aria-label="LRGZ">L R G Z</a></span></div>
