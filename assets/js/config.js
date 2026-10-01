@@ -51,9 +51,9 @@ window.SITE = {
      tags:   usadas nos filtros. Crie as que quiser.
      foil:   true = ganha o brilho holográfico animado. */
   vitrine: [
-    { nome: "Thorin Oakenshield", imagem: "assets/img/cartas/thorin-oakenshield.webp", tags: ["Clássica"], foil: false },
-    { nome: "Thorin Oakenshield", imagem: "assets/img/cartas/thorin-oakenshield.webp", tags: ["Foil"], foil: true },
-    { nome: "[Nome da carta 03]", imagem: "", tags: ["Foil", "Frente e verso"], foil: true },
+    { nome: "Black Lotus", imagem: "assets/img/cartas/black-lotus.webp", tags: ["Clássica", "Moldura antiga"], foil: false },
+    { nome: "The One Ring", imagem: "assets/img/cartas/the-one-ring.webp", tags: ["Foil", "Borderless"], foil: true },
+    { nome: "Krark's Thumb", imagem: "assets/img/cartas/kraks-thumb.webp", tags: ["Borderless", "Arte alternativa"], foil: false },
     { nome: "[Nome da carta 04]", imagem: "", tags: ["Clássica"], foil: false },
     { nome: "[Nome da carta 05]", imagem: "", tags: ["Foil", "Showcase"], foil: true },
     { nome: "[Nome da carta 06]", imagem: "", tags: ["Arte alternativa", "Custom"], foil: false },
@@ -73,10 +73,10 @@ window.SITE = {
       { titulo: "Papel", texto: "[Tipo de papel, gramatura, se é black core…]", foto: "" },
       { titulo: "Corte", texto: "[Como é o corte e o arredondamento dos cantos]", foto: "" },
       { titulo: "Foil", texto: "[Como é feito o brilho holográfico]", foto: "" },
-      { titulo: "No sleeve", texto: "[Espessura, se passa despercebida no deck]", foto: "assets/img/cartas/thorin-no-sleeve.webp" },
+      { titulo: "No sleeve", texto: "[Espessura, se passa despercebida no deck]", foto: "" },
     ],
     // Comparação lado a lado (arraste). Deixe "" para mostrar exemplo.
-    comparacao: { original: "https://cards.scryfall.io/normal/front/c/7/c7e18609-d1ed-4829-be11-f2ce2cfcbc49.jpg", proxy: "assets/img/cartas/thorin-oakenshield.webp", proxyFoil: true, legendaOriginal: "Original", legendaProxy: "Goblins Mágicos" },
+    comparacao: { original: "assets/img/cartas/the-one-ring.webp", proxy: "assets/img/cartas/the-one-ring.webp", proxyFoil: true, legendaOriginal: "Original", legendaProxy: "Goblins Mágicos" },
   },
 
   /* ---------- Como funciona ----------
@@ -113,7 +113,7 @@ window.SITE = {
     precoFoilDuplaFace: 16,       // carta dupla face (MDFC), foil
     precoDuplaFaceNoDeck: 1.8,    // acréscimo por carta dupla face dentro do deck pronto
     comandanteFoilBrinde: true,   // no deck pronto, o comandante foil não é cobrado
-    exemploLista: "1 Thorin Oakenshield\n1 Sol Ring\n1 Arcane Signet\n4 Lightning Bolt",
+    exemploLista: "1 Black Lotus\n1 The One Ring\n1 Krark's Thumb\n1 Sol Ring",
   },
 
   /* ---------- Encomendas pelo montador (montar.html) ----------
