@@ -26,6 +26,12 @@ window.SITE = {
     ctaPrincipal: "Encomendar no Instagram",
     ctaSecundario: "Ver a vitrine",
     miniProvas: ["Envio pra todo o Brasil"],
+    // cartas do leque em volta do goblin (exemplos/destaques; a vitrine fica com fotos reais)
+    cartas: [
+      { nome: "Black Lotus", imagem: "assets/img/cartas/black-lotus.webp", foil: false },
+      { nome: "The One Ring", imagem: "assets/img/cartas/the-one-ring.webp", foil: true },
+      { nome: "Krark's Thumb", imagem: "assets/img/cartas/kraks-thumb.webp", foil: false },
+    ],
   },
 
   /* ---------- Faixa de selos (rola sozinha) ---------- */
@@ -76,7 +82,7 @@ window.SITE = {
   /* ---------- Como funciona ----------
      imagem (opcional): mostra uma carta pequena no canto do passo. */
   passos: [
-    { titulo: "Monte o deck", imagem: "assets/img/cartas/thorin-oakenshield.webp", texto: "Cole a lista no montador ou busque carta por carta. Escolha a arte de cada uma e marque o que é foil." },
+    { titulo: "Monte o deck", imagem: "assets/img/cartas/black-lotus.webp", texto: "Cole a lista no montador ou busque carta por carta. Escolha a arte de cada uma e marque o que é foil." },
     { titulo: "Envie a encomenda", texto: "Deixe seu contato e envie. O pedido chega pra gente com todas as artes escolhidas, e você fica com o link." },
     { titulo: "Orçamento e pagamento", texto: "[Como você passa o valor e quais formas de pagamento aceita]" },
     { titulo: "Produção e envio", texto: "[Prazo de produção e como envia]" },
@@ -91,7 +97,7 @@ window.SITE = {
     avisoEstimativa: "Carta dupla face (MDFC) acompanha o valor da original: as duas faces são impressas. O valor final é confirmado com você antes da produção.",
     planos: [
       { id: "avulsa", titulo: "Avulsa", valor: 2.5, unidade: "por carta", descricao: "Carta comum, sem foil. Dupla face (MDFC): R$ 5,00.", destaque: false },
-      { id: "deck", titulo: "Deck pronto", imagem: "assets/img/cartas/thorin-oakenshield.webp", valor: 180, unidade: "99 cartas + comandante", descricao: "Commander completo pela sua lista. O comandante vai em foil, de brinde. Dupla face (MDFC): + R$ 1,80 cada.", destaque: true, selo: "Comandante foil de brinde" },
+      { id: "deck", titulo: "Deck pronto", imagem: "assets/img/cartas/the-one-ring.webp", valor: 180, unidade: "99 cartas + comandante", descricao: "Commander completo pela sua lista. O comandante vai em foil, de brinde. Dupla face (MDFC): + R$ 1,80 cada.", destaque: true, selo: "Comandante foil de brinde" },
       { id: "foil", titulo: "Foil", valor: 8, unidade: "por carta", descricao: "Acabamento foil. Dupla face (MDFC) foil: R$ 16,00.", destaque: false },
     ],
   },

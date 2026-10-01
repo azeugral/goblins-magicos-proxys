@@ -154,11 +154,15 @@
   /* ---------- leque do hero ---------- */
   const vitrine = get("vitrine") || [];
   const fan = $("[data-fan]");
-  if (fan && vitrine.length) {
+  const destaques = get("hero.cartas") || [];
+  if (fan && (destaques.length || vitrine.length)) {
     const todas = vitrine.map((v, i) => ({ v, i }));
-    const pick = [...new Set([...todas.filter((o) => o.v.imagem), ...todas.filter((o) => o.v.foil), ...todas])].slice(0, 3);
+    const pick = destaques.length
+      ? destaques.slice(0, 3).map((v, i) => ({ v, i }))
+      : [...new Set([...todas.filter((o) => o.v.imagem), ...todas.filter((o) => o.v.foil), ...todas])].slice(0, 3);
     pick.forEach((o, k) => { const c = makeCard(o.v, o.i, { eager: true }); c.style.setProperty("--i", k); fan.append(c); });
   }
+
 
   /* =====================================================================
      VITRINE
