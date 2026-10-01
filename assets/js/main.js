@@ -256,7 +256,7 @@
   const sIdx = Math.max(0, vitrine.indexOf(sample));
   if (cmp.original) cA.append(makeCard({ nome: cmp.legendaOriginal || "Original", imagem: cmp.original }, sIdx));
   else cA.append(makeCard({ ...sample, foil: false }, sIdx));
-  if (cmp.proxy) cB.append(makeCard({ nome: cmp.legendaProxy || "Proxy", imagem: cmp.proxy }, sIdx));
+  if (cmp.proxy) cB.append(makeCard({ nome: cmp.legendaProxy || "Proxy", imagem: cmp.proxy, foil: !!cmp.proxyFoil }, sIdx));
   else cB.append(makeCard({ ...sample, foil: true }, sIdx));
   const compare = $("[data-compare]");
   const range = $(".compare__range", compare);

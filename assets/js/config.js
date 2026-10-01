@@ -70,7 +70,7 @@ window.SITE = {
       { titulo: "No sleeve", texto: "[Espessura, se passa despercebida no deck]", foto: "assets/img/cartas/thorin-no-sleeve.webp" },
     ],
     // Comparação lado a lado (arraste). Deixe "" para mostrar exemplo.
-    comparacao: { original: "https://cards.scryfall.io/normal/front/c/7/c7e18609-d1ed-4829-be11-f2ce2cfcbc49.jpg", proxy: "assets/img/cartas/thorin-oakenshield.webp", legendaOriginal: "Original", legendaProxy: "Goblins Mágicos" },
+    comparacao: { original: "https://cards.scryfall.io/normal/front/c/7/c7e18609-d1ed-4829-be11-f2ce2cfcbc49.jpg", proxy: "assets/img/cartas/thorin-oakenshield.webp", proxyFoil: true, legendaOriginal: "Original", legendaProxy: "Goblins Mágicos" },
   },
 
   /* ---------- Como funciona ----------
