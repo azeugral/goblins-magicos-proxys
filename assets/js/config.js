@@ -12,8 +12,8 @@ window.SITE = {
   /* ---------- Marca e contato ---------- */
   marca: {
     nome: "Goblins Mágicos Proxys",
-    instagram: "[seu_usuario]",          // só o @, sem o "@". Ex.: "goblinsmagicos"
-    whatsapp: "",                         // opcional. Só números com DDI+DDD. Ex.: "5511999999999". Vazio = esconde o botão
+    instagram: "goblinsmagicos",          // só o @, sem o "@". Ex.: "goblinsmagicos"
+    whatsapp: "5519996224081",            // opcional. Só números com DDI+DDD. Ex.: "5511999999999". Vazio = esconde o botão
     cidade: "Americana - SP",
     email: "",                            // opcional
   },
