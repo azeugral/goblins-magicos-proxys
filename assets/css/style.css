@@ -214,8 +214,43 @@ button { font: inherit; color: inherit; }
 }
 .tcg__glare { opacity: calc(var(--o) * .9); mix-blend-mode: overlay; transition: opacity .4s; background: radial-gradient(farthest-corner circle at var(--mx) var(--my), rgba(255, 255, 255, .75) 0%, rgba(255, 255, 255, .15) 30%, rgba(0, 0, 0, .35) 90%); }
 .tcg:not(.is-foil) .tcg__foil { display: none; }
-.tcg.is-foil.is-idle .tcg__foil { animation: sheen 7s ease-in-out infinite; }
-@keyframes sheen { 0%, 100% { --o: .35; background-position: 0% 0%, 0 0; } 50% { --o: .55; background-position: 100% 100%, 0 0; } }
+
+/* ---------- Foil: arco-íris forte, faixas de brilho, glitter e halo ---------- */
+@property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.tcg.is-foil .tcg__foil {
+  opacity: calc(.62 + var(--o) * .38);
+  mix-blend-mode: color-dodge;
+  background:
+    repeating-linear-gradient(120deg, hsl(0 100% 62%) 0%, hsl(45 100% 60%) 5%, hsl(120 100% 58%) 10%, hsl(190 100% 60%) 15%, hsl(270 100% 68%) 20%, hsl(330 100% 64%) 25%, hsl(0 100% 62%) 30%),
+    repeating-linear-gradient(60deg, rgba(255, 255, 255, 0) 0 6%, rgba(255, 255, 255, .6) 8%, rgba(255, 255, 255, 0) 10%);
+  background-size: 300% 300%, 220% 220%;
+  background-blend-mode: screen;
+  filter: saturate(1.7) brightness(1.05) contrast(1.05) hue-rotate(0deg);
+}
+.tcg.is-foil.is-idle .tcg__foil { animation: foilFlow 6s linear infinite, foilHue 9s linear infinite; }
+.tcg.is-foil.is-tracking .tcg__foil { background-position: calc(var(--mx) * 1.6) calc(var(--my) * 1.6), calc(var(--mx) * -1) calc(var(--my) * -1); }
+@keyframes foilFlow { from { background-position: 0% 0%, 100% 0%; } to { background-position: 300% 300%, -120% 220%; } }
+@keyframes foilHue { to { filter: saturate(1.7) brightness(1.05) contrast(1.05) hue-rotate(360deg); } }
+.tcg.is-foil .tcg__foil::after { /* glitter */
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background-image: radial-gradient(circle, #fff 0 1px, transparent 1.7px), radial-gradient(circle, #fff 0 .8px, transparent 1.4px);
+  background-size: 23px 29px, 17px 13px; background-position: 0 0, 7px 5px;
+  mix-blend-mode: overlay; opacity: .75; animation: glitter 1.4s steps(2, jump-none) infinite;
+}
+@keyframes glitter { 50% { background-position: 11px 13px, 0 9px; opacity: .45; } }
+.tcg.is-foil .tcg__glare { opacity: calc(.5 + var(--o) * .5); }
+.tcg.is-foil.is-idle .tcg__glare { /* faixa de luz atravessando */
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, .9) 48%, rgba(255, 255, 255, .25) 52%, transparent 62%);
+  background-size: 260% 100%; animation: sweep 3.6s cubic-bezier(.4, 0, .2, 1) infinite;
+}
+@keyframes sweep { 0% { background-position: 160% 0; } 70%, 100% { background-position: -60% 0; } }
+.tcg.is-foil .tilt::before { /* halo colorido em volta da carta */
+  content: ""; position: absolute; inset: -4px; border-radius: 6% / 4.4%;
+  background: conic-gradient(from var(--ang), #ff5a5a, #ffd35a, #6bff8f, #5ad7ff, #b36bff, #ff5a9e, #ff5a5a);
+  filter: blur(12px); opacity: .55; animation: halo 5s linear infinite; pointer-events: none;
+}
+.tcg.is-foil.is-tracking .tilt::before { opacity: .85; }
+@keyframes halo { to { --ang: 360deg; } }
 @property --o { syntax: "<number>"; inherits: true; initial-value: 0; }
 
 /* carta de exemplo (placeholder) */

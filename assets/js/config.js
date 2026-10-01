@@ -46,7 +46,7 @@ window.SITE = {
      foil:   true = ganha o brilho holográfico animado. */
   vitrine: [
     { nome: "Thorin Oakenshield", imagem: "assets/img/cartas/thorin-oakenshield.webp", tags: ["Clássica"], foil: false },
-    { nome: "[Nome da carta 02]", imagem: "", tags: ["Arte alternativa"], foil: false },
+    { nome: "Thorin Oakenshield", imagem: "assets/img/cartas/thorin-oakenshield.webp", tags: ["Foil"], foil: true },
     { nome: "[Nome da carta 03]", imagem: "", tags: ["Foil", "Frente e verso"], foil: true },
     { nome: "[Nome da carta 04]", imagem: "", tags: ["Clássica"], foil: false },
     { nome: "[Nome da carta 05]", imagem: "", tags: ["Foil", "Showcase"], foil: true },
