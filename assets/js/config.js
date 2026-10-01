@@ -45,7 +45,7 @@ window.SITE = {
      tags:   usadas nos filtros. Crie as que quiser.
      foil:   true = ganha o brilho holográfico animado. */
   vitrine: [
-    { nome: "[Nome da carta 01]", imagem: "", tags: ["Foil", "Borderless"], foil: true },
+    { nome: "Thorin Oakenshield", imagem: "assets/img/cartas/thorin-oakenshield.webp", tags: ["Clássica"], foil: false },
     { nome: "[Nome da carta 02]", imagem: "", tags: ["Arte alternativa"], foil: false },
     { nome: "[Nome da carta 03]", imagem: "", tags: ["Foil", "Frente e verso"], foil: true },
     { nome: "[Nome da carta 04]", imagem: "", tags: ["Clássica"], foil: false },
@@ -67,15 +67,16 @@ window.SITE = {
       { titulo: "Papel", texto: "[Tipo de papel, gramatura, se é black core…]", foto: "" },
       { titulo: "Corte", texto: "[Como é o corte e o arredondamento dos cantos]", foto: "" },
       { titulo: "Foil", texto: "[Como é feito o brilho holográfico]", foto: "" },
-      { titulo: "No sleeve", texto: "[Espessura, se passa despercebida no deck]", foto: "" },
+      { titulo: "No sleeve", texto: "[Espessura, se passa despercebida no deck]", foto: "assets/img/cartas/thorin-no-sleeve.webp" },
     ],
     // Comparação lado a lado (arraste). Deixe "" para mostrar exemplo.
-    comparacao: { original: "", proxy: "", legendaOriginal: "Original", legendaProxy: "Goblins Mágicos" },
+    comparacao: { original: "https://cards.scryfall.io/normal/front/c/7/c7e18609-d1ed-4829-be11-f2ce2cfcbc49.jpg", proxy: "assets/img/cartas/thorin-oakenshield.webp", legendaOriginal: "Original", legendaProxy: "Goblins Mágicos" },
   },
 
-  /* ---------- Como funciona ---------- */
+  /* ---------- Como funciona ----------
+     imagem (opcional): mostra uma carta pequena no canto do passo. */
   passos: [
-    { titulo: "Monte o deck", texto: "Cole a lista no montador ou busque carta por carta. Escolha a arte de cada uma e marque o que é foil." },
+    { titulo: "Monte o deck", imagem: "assets/img/cartas/thorin-oakenshield.webp", texto: "Cole a lista no montador ou busque carta por carta. Escolha a arte de cada uma e marque o que é foil." },
     { titulo: "Envie a encomenda", texto: "Deixe seu contato e envie. O pedido chega pra gente com todas as artes escolhidas, e você fica com o link." },
     { titulo: "Orçamento e pagamento", texto: "[Como você passa o valor e quais formas de pagamento aceita]" },
     { titulo: "Produção e envio", texto: "[Prazo de produção e como envia]" },
@@ -83,13 +84,14 @@ window.SITE = {
 
   /* ---------- Preços ----------
      valor: número (ex.: 2.5) ou texto.
-     aPartir: true mostra "a partir de" antes do valor. */
+     aPartir: true mostra "a partir de" antes do valor.
+     imagem (opcional): mostra uma carta pequena no canto do card. */
   precos: {
     moeda: "R$",
     avisoEstimativa: "Cartas dupla face (MDFC) custam R$ 1,80 a mais cada. O valor final é confirmado com você antes da produção.",
     planos: [
       { id: "avulsa", titulo: "Avulsa", valor: 2.5, unidade: "por carta", descricao: "Carta comum, sem foil. Dupla face (MDFC): + R$ 1,80.", destaque: false },
-      { id: "deck", titulo: "Deck pronto", valor: 180, unidade: "99 cartas + comandante", descricao: "Commander completo pela sua lista. O comandante vai em foil, de brinde. Dupla face (MDFC): + R$ 1,80 cada.", destaque: true, selo: "Comandante foil de brinde" },
+      { id: "deck", titulo: "Deck pronto", imagem: "assets/img/cartas/thorin-oakenshield.webp", valor: 180, unidade: "99 cartas + comandante", descricao: "Commander completo pela sua lista. O comandante vai em foil, de brinde. Dupla face (MDFC): + R$ 1,80 cada.", destaque: true, selo: "Comandante foil de brinde" },
       { id: "foil", titulo: "Foil", valor: 8, unidade: "por carta", descricao: "Acabamento foil. Dupla face (MDFC): + R$ 1,80.", destaque: false },
     ],
   },
@@ -103,7 +105,7 @@ window.SITE = {
     precoDeck100: 180,            // deck pronto: 99 cartas + comandante (pedidos com 100 cartas ou mais)
     precoDuplaFace: 1.8,          // acréscimo por carta dupla face (MDFC)
     comandanteFoilBrinde: true,   // no deck pronto, o comandante foil não é cobrado
-    exemploLista: "1 Sol Ring\n1 Arcane Signet\n1 Command Tower\n4 Lightning Bolt",
+    exemploLista: "1 Thorin Oakenshield\n1 Sol Ring\n1 Arcane Signet\n4 Lightning Bolt",
   },
 
   /* ---------- Encomendas pelo montador (montar.html) ----------
@@ -129,12 +131,7 @@ window.SITE = {
   versoCarta: "",
 
   /* ---------- Depoimentos ---------- */
-  depoimentos: [
-    { texto: "[Depoimento de cliente — uma ou duas frases.]", autor: "[@cliente]" },
-    { texto: "[Depoimento de cliente — uma ou duas frases.]", autor: "[@cliente]" },
-    { texto: "[Depoimento de cliente — uma ou duas frases.]", autor: "[@cliente]" },
-    { texto: "[Depoimento de cliente — uma ou duas frases.]", autor: "[@cliente]" },
-  ],
+  depoimentos: [],   // vazio = a seção de avaliações não aparece. Ex.: { texto: "…", autor: "@cliente" }
 
   /* ---------- Perguntas frequentes ---------- */
   faq: [

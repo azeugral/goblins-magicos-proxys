@@ -312,6 +312,14 @@ button { font: inherit; color: inherit; }
 .plan .btn { width: 100%; }
 .plan--hl { background: #2a1510; box-shadow: 0 0 0 2px var(--red) inset; }
 .plan--hl h3 { color: #ffb99b; }
+.plan__carta, .step__carta { position: absolute; z-index: 1; pointer-events: none; }
+.plan__carta { top: -34px; right: 22px; width: 58px; transform: rotate(8deg); transition: transform .5s var(--ease); }
+.plan:has(.plan__carta) .plan__badge { right: auto; left: 18px; }
+.plan:hover .plan__carta { transform: rotate(3deg) translateY(-4px); }
+.step__carta { top: 22px; right: 20px; width: 58px; transform: rotate(-6deg); transition: transform .5s var(--ease); }
+.step:hover .step__carta { transform: rotate(-2deg) translateY(-4px); }
+.step--carta::after { display: none; }
+.plan__carta .tcg__face, .step__carta .tcg__face { box-shadow: 0 10px 22px -10px #000; }
 .plan__badge { position: absolute; top: -11px; right: 18px; padding: 6px 10px; border-radius: 0; background: var(--green); color: var(--bg); font: 700 11px/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; }
 
 /* ---------- Montador ---------- */
@@ -464,6 +472,8 @@ textarea:focus, input[type="text"]:focus { outline: none; box-shadow: 0 0 0 2px 
   .steps, .plans, .specs { grid-template-columns: 1fr; }
   .step { display: grid; grid-template-columns: auto 1fr; column-gap: 18px; padding: 22px 20px; }
   .step::before { grid-row: span 2; font-size: 56px; margin: 0; }
+  .step__carta { width: 44px; top: 16px; right: 14px; }
+  .step--carta h3 { padding-right: 52px; }
   .step::after { display: none; }
   .field-row { grid-template-columns: 1fr; }
   .seg { display: flex; }

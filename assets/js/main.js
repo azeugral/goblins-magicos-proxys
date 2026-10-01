@@ -155,7 +155,8 @@
   const vitrine = get("vitrine") || [];
   const fan = $("[data-fan]");
   if (fan && vitrine.length) {
-    const pick = [...vitrine.map((v, i) => ({ v, i })).filter((o) => o.v.foil), ...vitrine.map((v, i) => ({ v, i }))].slice(0, 3);
+    const todas = vitrine.map((v, i) => ({ v, i }));
+    const pick = [...new Set([...todas.filter((o) => o.v.imagem), ...todas.filter((o) => o.v.foil), ...todas])].slice(0, 3);
     pick.forEach((o, k) => { const c = makeCard(o.v, o.i, { eager: true }); c.style.setProperty("--i", k); fan.append(c); });
   }
 
@@ -253,9 +254,9 @@
   const cA = $("[data-compare-a]"), cB = $("[data-compare-b]");
   const sample = vitrine.find((v) => v.foil) || vitrine[0] || { nome: "Exemplo" };
   const sIdx = Math.max(0, vitrine.indexOf(sample));
-  if (cmp.original) cA.append(h("img", { src: cmp.original, alt: cmp.legendaOriginal || "Original", loading: "lazy" }));
+  if (cmp.original) cA.append(makeCard({ nome: cmp.legendaOriginal || "Original", imagem: cmp.original }, sIdx));
   else cA.append(makeCard({ ...sample, foil: false }, sIdx));
-  if (cmp.proxy) cB.append(h("img", { src: cmp.proxy, alt: cmp.legendaProxy || "Proxy", loading: "lazy" }));
+  if (cmp.proxy) cB.append(makeCard({ nome: cmp.legendaProxy || "Proxy", imagem: cmp.proxy }, sIdx));
   else cB.append(makeCard({ ...sample, foil: true }, sIdx));
   const compare = $("[data-compare]");
   const range = $(".compare__range", compare);
@@ -265,7 +266,9 @@
      PASSOS / PREÇOS / DEPOIMENTOS / FAQ
      ===================================================================== */
   const steps = $("[data-steps]");
-  (get("passos") || []).forEach((s, i) => steps.append(h("li", { class: "step rv", style: `--i:${i}` }, h("h3", { text: s.titulo }), h("p", { text: s.texto }))));
+  const miniCarta = (img, cls) => (img ? h("div", { class: cls, "aria-hidden": "true" }, makeCard({ nome: "", imagem: img }, 0, { eager: true })) : null);
+  (get("passos") || []).forEach((s, i) => steps.append(h("li", { class: "step rv" + (s.imagem ? " step--carta" : ""), style: `--i:${i}` },
+    miniCarta(s.imagem, "step__carta"), h("h3", { text: s.titulo }), h("p", { text: s.texto }))));
 
   const moeda = get("precos.moeda") || "R$";
   const brl = (n) => n.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -279,6 +282,7 @@
     if (!igOk && p.id !== "deck") cta.addEventListener("click", (e) => { e.preventDefault(); toast("Configure o @ do Instagram no config.js"); });
     plans.append(h("article", { class: "plan rv" + (p.destaque ? " plan--hl" : ""), style: `--i:${i}` },
       p.destaque && p.selo ? h("span", { class: "plan__badge", text: p.selo }) : null,
+      miniCarta(p.imagem, "plan__carta"),
       h("h3", { text: p.titulo }),
       p.aPartir ? h("span", { class: "plan__from", text: "a partir de" }) : null,
       h("div", { class: "plan__price" }, h("small", { text: moeda }), priceB),
