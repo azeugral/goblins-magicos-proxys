@@ -298,6 +298,6 @@ select:focus { outline: none; box-shadow: 0 0 0 2px var(--green) inset; }
 .doc__data { font: 500 12px/1.4 var(--f-mono); color: var(--ink-3); }
 .doc--404 { display: grid; justify-items: center; text-align: center; gap: 6px; padding-top: clamp(56px, 12vw, 120px); }
 .doc--404 .final__ctas { margin-top: 20px; }
-.doc--404 .btn { text-decoration: none; }
+.doc--404 .btn { text-decoration: none; color: var(--fg); }
 .doc__pe { max-width: 720px; margin: 0 auto; padding: 20px var(--gutter) 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font: 500 12px/1.4 var(--f-mono); color: var(--ink-3); border-top: 1px solid var(--line); }
 .doc__pe a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line-2); }
