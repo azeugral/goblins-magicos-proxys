@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /goblins-magicos-proxys/pedido.html
+
+Sitemap: https://azeugral.github.io/goblins-magicos-proxys/sitemap.xml

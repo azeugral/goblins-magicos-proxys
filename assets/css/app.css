@@ -136,6 +136,7 @@ select:focus { outline: none; box-shadow: 0 0 0 2px var(--green) inset; }
 .check { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink-2); cursor: pointer; line-height: 1.4; }
 .check input { appearance: none; -webkit-appearance: none; flex: none; width: 20px; height: 20px; margin: 0; box-shadow: 0 0 0 1.5px var(--ink-3) inset; background: #120d0b; cursor: pointer; transition: background-color .25s var(--ease), box-shadow .25s var(--ease); }
 .check input:checked { background: var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5 9-10' fill='none' stroke='%23120e0c' stroke-width='3'/%3E%3C/svg%3E") center/16px no-repeat; box-shadow: none; }
+.check a { color: var(--green); text-underline-offset: 3px; }
 .check input:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
 
 /* ---------- Seletor de arte ---------- */
@@ -284,3 +285,19 @@ select:focus { outline: none; box-shadow: 0 0 0 2px var(--green) inset; }
 @media (prefers-reduced-motion: reduce) {
   .carta, .carta__img, .foilfx, .carta.is-foil .carta__img::after { animation: none !important; }
 }
+
+/* ---------- Páginas de texto (privacidade, 404) ---------- */
+.doc { max-width: 720px; margin: 0 auto; padding: clamp(40px, 8vw, 88px) var(--gutter) 64px; color: var(--ink-2); line-height: 1.65; }
+.doc .sec-title { font-size: clamp(28px, 5vw, 48px); margin: 8px 0 12px; }
+.doc h2 { font: 700 15px/1.3 var(--f-display); color: var(--ink); margin: 40px 0 10px; }
+.doc p, .doc ul { margin: 0 0 14px; }
+.doc ul { padding-left: 20px; }
+.doc li { margin-bottom: 8px; }
+.doc strong { color: var(--ink); }
+.doc a { color: var(--green); text-underline-offset: 3px; }
+.doc__data { font: 500 12px/1.4 var(--f-mono); color: var(--ink-3); }
+.doc--404 { display: grid; justify-items: center; text-align: center; gap: 6px; padding-top: clamp(56px, 12vw, 120px); }
+.doc--404 .final__ctas { margin-top: 20px; }
+.doc--404 .btn { text-decoration: none; }
+.doc__pe { max-width: 720px; margin: 0 auto; padding: 20px var(--gutter) 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font: 500 12px/1.4 var(--f-mono); color: var(--ink-3); border-top: 1px solid var(--line); }
+.doc__pe a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line-2); }

@@ -6,16 +6,25 @@
   <title>Goblins Mágicos Proxys</title>
   <meta name="description" content="Proxies de TCG impressos e cortados no tamanho oficial, para mesa casual, Commander e playtest. Encomendas pelo Instagram.">
   <meta name="theme-color" content="#120e0c">
+  <link rel="canonical" href="https://azeugral.github.io/goblins-magicos-proxys/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Goblins Mágicos Proxys">
+  <meta property="og:url" content="https://azeugral.github.io/goblins-magicos-proxys/">
   <meta property="og:title" content="Goblins Mágicos Proxys">
   <meta property="og:description" content="Proxies de TCG para mesa casual, Commander e playtest. Encomendas pelo Instagram.">
-  <meta property="og:image" content="assets/img/og.jpg">
+  <meta property="og:image" content="https://azeugral.github.io/goblins-magicos-proxys/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Goblins Mágicos Proxys">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Almendra:wght@700&family=Permanent+Marker&family=Unbounded:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=15">
+  <link rel="stylesheet" href="assets/css/style.css?v=16">
 </head>
 <body>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -49,6 +58,7 @@
       <a href="#faq">Dúvidas</a>
     </nav>
     <a class="btn btn--ig btn--block" data-ig-dm target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Chamar no Instagram</a>
+    <a class="btn btn--wa btn--block" data-wa target="_blank" rel="noopener" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Chamar no WhatsApp</a>
   </div>
 
   <main id="conteudo">
@@ -189,6 +199,7 @@
           <h2 class="sec-title">Perguntas frequentes</h2>
           <p class="sec-lead">Se a sua dúvida não estiver aqui, pergunte pelo Instagram.</p>
           <a class="btn btn--ghost" data-ig-dm target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Perguntar no Instagram</a>
+          <a class="btn btn--wa" data-wa target="_blank" rel="noopener" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Perguntar no WhatsApp</a>
         </header>
         <div class="acc" data-faq></div>
       </div>
@@ -199,7 +210,10 @@
       <div class="wrap final__in" data-reveal>
         <img src="assets/img/logo-192.webp" width="96" height="96" alt="" class="final__logo">
         <h2 class="final__title">Encomendas pelo Instagram</h2>
+        <div class="final__ctas">
         <a class="btn btn--ig btn--lg" data-ig-dm target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg><span data-ig-handle></span></a>
+          <a class="btn btn--wa btn--lg" data-wa target="_blank" rel="noopener" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-wa"/></svg>WhatsApp</a>
+        </div>
       </div>
     </section>
   </main>
@@ -214,7 +228,7 @@
         </div>
       </div>
       <p class="foot__legal" data-bind="rodape.aviso"></p>
-      <div class="foot__meta"><span>© <span data-year></span> <span data-bind="marca.nome"></span></span><span class="assinatura">Site por <a href="https://lrgz.com.br" target="_blank" rel="noopener" aria-label="LRGZ">L R G Z</a></span></div>
+      <div class="foot__meta"><span>© <span data-year></span> <span data-bind="marca.nome"></span></span><a href="privacidade.html">Privacidade</a><span class="assinatura">Site por <a href="https://lrgz.com.br" target="_blank" rel="noopener" aria-label="LRGZ">L R G Z</a></span></div>
     </div>
   </footer>
 
@@ -251,6 +265,6 @@
   </svg>
 
   <script src="assets/js/config.js?v=18"></script>
-  <script src="assets/js/main.js?v=17"></script>
+  <script src="assets/js/main.js?v=18"></script>
 </body>
 </html>

@@ -66,6 +66,12 @@
   });
   $$("[data-ig-handle]").forEach((el) => setText(el, igOk ? `@${igUser}` : "[@seu_usuario]"));
   const wa = String(get("marca.whatsapp") || "").replace(/\D/g, "");
+  const waUrl = wa ? `https://wa.me/${wa}?text=${encodeURIComponent(`Olá! Vim pelo site e quero fazer uma encomenda.`)}` : "";
+  $$("[data-wa]").forEach((a) => {
+    if (!waUrl) return a.remove();
+    a.href = waUrl;
+    a.hidden = false;
+  });
 
   /* ---------- título do hero ---------- */
   const titleEl = $("[data-hero-title]");
