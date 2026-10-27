@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /goblins-magicos-proxys/pedido.html
+Disallow: /pedido.html
 
 Sitemap: https://goblinsmagicos.com.br/sitemap.xml
