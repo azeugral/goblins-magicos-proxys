@@ -287,7 +287,7 @@ button { font: inherit; color: inherit; }
 .spec { position: relative; border-radius: var(--r); background: var(--surface); box-shadow: 0 0 0 1px var(--line) inset; overflow: hidden; transition: transform .35s var(--ease-out), box-shadow .35s; }
 .spec:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px var(--line-2) inset; }
 .spec__img { aspect-ratio: 16 / 10; background: repeating-linear-gradient(135deg, rgba(243, 230, 200, .05) 0 10px, transparent 10px 20px), var(--surface-2); display: grid; place-items: center; font: 700 11px/1 var(--f-mono); letter-spacing: .12em; color: var(--ink-3); text-transform: uppercase; }
-.spec__img img { width: 100%; height: 100%; object-fit: cover; }
+.spec__img img, .spec__img video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .spec__body { padding: 16px 18px 18px; }
 .spec__body h3 { margin: 0 0 6px; font: 700 16px/1.2 var(--f-display); letter-spacing: -.02em; display: flex; gap: 10px; align-items: baseline; }
 .spec__body h3::before { counter-increment: s; content: "0" counter(s); font: 700 11px/1 var(--f-mono); color: var(--green); }

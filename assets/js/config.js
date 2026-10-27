@@ -26,11 +26,11 @@ window.SITE = {
     ctaPrincipal: "Encomendar no Instagram",
     ctaSecundario: "Ver a vitrine",
     miniProvas: ["Retirada em Americana, Santa Bárbara e Piracicaba"],
-    // cartas do leque em volta do goblin (exemplos/destaques; a vitrine fica com fotos reais)
+    // cartas do leque em volta do goblin: clássicas do Magic, só de decoração (a vitrine fica com as fotos reais)
     cartas: [
-      { nome: "Goldspan Dragon", imagem: "assets/img/cartas/goldspan-dragon.webp", foil: false },
-      { nome: "Sol Ring", imagem: "assets/img/cartas/sol-ring.webp", foil: true },
-      { nome: "Desolation of Smaug", imagem: "assets/img/cartas/desolation-of-smaug.webp", foil: false },
+      { nome: "Black Lotus", imagem: "assets/img/cartas/black-lotus.webp", foil: false },
+      { nome: "The One Ring", imagem: "assets/img/cartas/the-one-ring.webp", foil: true },
+      { nome: "Krark's Thumb", imagem: "assets/img/cartas/kraks-thumb.webp", foil: false },
     ],
   },
 
@@ -68,7 +68,7 @@ window.SITE = {
     texto: "Cada carta é impressa no tamanho oficial, em papel cartão 300 g ou papel fotográfico 260 g. No foil, o adesivo vinílico holográfico vai aplicado sobre uma carta verdadeira, então o verso é o original.",
     itens: [
       { titulo: "Papel", texto: "Papel cartão 300 g ou papel fotográfico 260 g, cortado em 63×88 mm.", foto: "assets/img/fotos/papel.webp" },
-      { titulo: "Foil", texto: "Adesivo vinílico aplicado sobre uma carta verdadeira: o verso é de carta original.", foto: "assets/img/fotos/foil.webp" },
+      { titulo: "Foil", texto: "Adesivo vinílico aplicado sobre uma carta verdadeira: o verso é de carta original.", foto: "assets/img/fotos/foil-vivi.webp", video: "assets/video/foil-vivi.mp4" },
     ],
     // Comparação lado a lado (arraste): original = scan oficial do Scryfall, proxy = foto da carta impressa. Deixe "" para mostrar exemplo.
     comparacao: { original: "assets/img/cartas/goldspan-dragon-original.webp", proxy: "assets/img/cartas/goldspan-dragon.webp", proxyFoil: false, legendaOriginal: "Original", legendaProxy: "Goblins Mágicos" },
@@ -77,7 +77,7 @@ window.SITE = {
   /* ---------- Como funciona ----------
      imagem (opcional): mostra uma carta pequena no canto do passo. */
   passos: [
-    { titulo: "Monte o deck", imagem: "assets/img/cartas/steam-vents.webp", texto: "Cole a lista no montador ou busque carta por carta. Escolha a arte de cada uma e marque o que é foil." },
+    { titulo: "Monte o deck", imagem: "assets/img/cartas/black-lotus.webp", texto: "Cole a lista no montador ou busque carta por carta. Escolha a arte de cada uma e marque o que é foil." },
     { titulo: "Envie a encomenda", texto: "Deixe seu contato e envie. O pedido chega pra gente com todas as artes escolhidas, e você fica com o link." },
     { titulo: "Orçamento e pagamento", texto: "A gente confirma o valor com você. O pagamento é só por Pix, completo antes da produção." },
     { titulo: "Produção e retirada", texto: "O deck completo fica pronto em 14 dias. Por enquanto a entrega é só na região, nas lojas parceiras." },
@@ -92,7 +92,7 @@ window.SITE = {
     avisoEstimativa: "Carta dupla face (MDFC) acompanha o valor da original: as duas faces são impressas. O valor final é confirmado com você antes da produção.",
     planos: [
       { id: "avulsa", titulo: "Avulsa", valor: 2.5, unidade: "por carta", descricao: "Carta comum, sem foil. Dupla face (MDFC): R$ 5,00.", destaque: false },
-      { id: "deck", titulo: "Deck pronto", imagem: "assets/img/cartas/sol-ring.webp", valor: 180, unidade: "99 cartas + comandante", descricao: "Commander completo pela sua lista. O comandante vai em foil, de brinde. Dupla face (MDFC): + R$ 1,80 cada.", destaque: true, selo: "Comandante foil de brinde" },
+      { id: "deck", titulo: "Deck pronto", imagem: "assets/img/cartas/the-one-ring.webp", valor: 180, unidade: "99 cartas + comandante", descricao: "Commander completo pela sua lista. O comandante vai em foil, de brinde. Dupla face (MDFC): + R$ 1,80 cada.", destaque: true, selo: "Comandante foil de brinde" },
       { id: "foil", titulo: "Foil", valor: 8, unidade: "por carta", descricao: "Acabamento foil. Dupla face (MDFC) foil: R$ 16,00.", destaque: false },
     ],
   },

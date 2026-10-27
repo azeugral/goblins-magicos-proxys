@@ -254,7 +254,14 @@
   const specs = $("[data-specs]");
   (get("qualidade.itens") || []).forEach((it, i) => {
     const img = h("div", { class: "spec__img" });
-    if (it.foto) img.append(h("img", { src: it.foto, alt: it.titulo, loading: "lazy" }));
+    // video (opcional): loop mudo no lugar da foto; a foto vira o pôster
+    if (it.video) {
+      const v = h("video", { src: it.video, poster: it.foto || null, loop: "", playsinline: "", preload: "metadata", "aria-label": it.titulo });
+      v.muted = true;  // autoplay só vale com a propriedade, não com o atributo
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { v.autoplay = true; v.play().catch(() => {}); }
+      img.append(v);
+    }
+    else if (it.foto) img.append(h("img", { src: it.foto, alt: it.titulo, loading: "lazy" }));
     else img.textContent = `Foto · ${it.titulo}`;
     specs.append(h("li", { class: "spec rv", style: `--i:${i}` }, img,
       h("div", { class: "spec__body" }, h("h3", { text: it.titulo }), h("p", { text: it.texto }))));
