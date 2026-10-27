@@ -89,6 +89,22 @@
     ring.setAttribute("lengthAdjust", "spacing");
   }
 
+  /* ---------- easter egg: 3 cliques seguidos no goblin ---------- */
+  const seal = $(".seal");
+  if (seal) {
+    let cliques = 0, zera, volta;
+    seal.addEventListener("click", () => {
+      cliques++;
+      clearTimeout(zera);
+      zera = setTimeout(() => (cliques = 0), 900);
+      if (cliques < 3) return;
+      cliques = 0;
+      seal.classList.add("seal--egg");
+      clearTimeout(volta);
+      volta = setTimeout(() => seal.classList.remove("seal--egg"), 4500);
+    });
+  }
+
   /* ---------- faixa de selos ---------- */
   const ticker = $("[data-ticker]");
   const selos = get("selos") || [];
