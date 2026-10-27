@@ -25,7 +25,7 @@ window.SITE = {
     subtitulo: "Cartas impressas e cortadas em 63×88 mm, com opção de foil. Mande a lista do seu deck pelo Instagram e receba o orçamento.",
     ctaPrincipal: "Encomendar no Instagram",
     ctaSecundario: "Ver a vitrine",
-    miniProvas: ["Envio pra todo o Brasil"],
+    miniProvas: ["Retirada em Americana, Santa Bárbara e Piracicaba"],
     // cartas do leque em volta do goblin (exemplos/destaques; a vitrine fica com fotos reais)
     cartas: [
       { nome: "Black Lotus", imagem: "assets/img/cartas/black-lotus.webp", foil: false },
@@ -37,12 +37,12 @@ window.SITE = {
   /* ---------- Faixa de selos (rola sozinha) ---------- */
   selos: [
     "Tamanho oficial 63×88 mm",
-    "[Papel / gramatura]",
+    "Papel cartão 300 g ou fotográfico 260 g",
     "Embaralha junto com as originais",
     "Cabe em qualquer sleeve",
-    "[Acabamento foil]",
+    "Foil aplicado sobre carta original",
     "Deck completo pela sua lista",
-    "[Prazo de produção]",
+    "Deck completo em 14 dias",
   ],
 
   /* ---------- Vitrine ----------
@@ -54,26 +54,15 @@ window.SITE = {
     { nome: "Black Lotus", imagem: "assets/img/cartas/black-lotus.webp", tags: ["Clássica", "Moldura antiga"], foil: false },
     { nome: "The One Ring", imagem: "assets/img/cartas/the-one-ring.webp", tags: ["Foil", "Borderless"], foil: true },
     { nome: "Krark's Thumb", imagem: "assets/img/cartas/kraks-thumb.webp", tags: ["Borderless", "Arte alternativa"], foil: false },
-    { nome: "[Nome da carta 04]", imagem: "", tags: ["Clássica"], foil: false },
-    { nome: "[Nome da carta 05]", imagem: "", tags: ["Foil", "Showcase"], foil: true },
-    { nome: "[Nome da carta 06]", imagem: "", tags: ["Arte alternativa", "Custom"], foil: false },
-    { nome: "[Nome da carta 07]", imagem: "", tags: ["Borderless"], foil: false },
-    { nome: "[Nome da carta 08]", imagem: "", tags: ["Foil", "Showcase"], foil: true },
-    { nome: "[Nome da carta 09]", imagem: "", tags: ["Frente e verso"], foil: false },
-    { nome: "[Nome da carta 10]", imagem: "", tags: ["Custom"], foil: true },
-    { nome: "[Nome da carta 11]", imagem: "", tags: ["Clássica"], foil: false },
-    { nome: "[Nome da carta 12]", imagem: "", tags: ["Foil", "Borderless"], foil: true },
   ],
 
   /* ---------- Qualidade de perto ---------- */
   qualidade: {
     titulo: "Papel, corte e acabamento",
-    texto: "[Explique aqui o seu processo: papel, impressão, corte, acabamento. Duas ou três frases bastam.]",
+    texto: "Cada carta é impressa no tamanho oficial, em papel cartão 300 g ou papel fotográfico 260 g. No foil, o adesivo vinílico holográfico vai aplicado sobre uma carta verdadeira, então o verso é o original.",
     itens: [
-      { titulo: "Papel", texto: "[Tipo de papel, gramatura, se é black core…]", foto: "" },
-      { titulo: "Corte", texto: "[Como é o corte e o arredondamento dos cantos]", foto: "" },
-      { titulo: "Foil", texto: "[Como é feito o brilho holográfico]", foto: "" },
-      { titulo: "No sleeve", texto: "[Espessura, se passa despercebida no deck]", foto: "" },
+      { titulo: "Papel", texto: "Papel cartão 300 g ou papel fotográfico 260 g, cortado em 63×88 mm.", foto: "" },
+      { titulo: "Foil", texto: "Adesivo vinílico aplicado sobre uma carta verdadeira: o verso é de carta original.", foto: "" },
     ],
     // Comparação lado a lado (arraste). Deixe "" para mostrar exemplo.
     comparacao: { original: "assets/img/cartas/the-one-ring.webp", proxy: "assets/img/cartas/the-one-ring.webp", proxyFoil: true, legendaOriginal: "Original", legendaProxy: "Goblins Mágicos" },
@@ -84,8 +73,8 @@ window.SITE = {
   passos: [
     { titulo: "Monte o deck", imagem: "assets/img/cartas/black-lotus.webp", texto: "Cole a lista no montador ou busque carta por carta. Escolha a arte de cada uma e marque o que é foil." },
     { titulo: "Envie a encomenda", texto: "Deixe seu contato e envie. O pedido chega pra gente com todas as artes escolhidas, e você fica com o link." },
-    { titulo: "Orçamento e pagamento", texto: "[Como você passa o valor e quais formas de pagamento aceita]" },
-    { titulo: "Produção e envio", texto: "[Prazo de produção e como envia]" },
+    { titulo: "Orçamento e pagamento", texto: "A gente confirma o valor com você. O pagamento é só por Pix, completo antes da produção." },
+    { titulo: "Produção e retirada", texto: "O deck completo fica pronto em 14 dias. Por enquanto a entrega é só na região, nas lojas parceiras." },
   ],
 
   /* ---------- Preços ----------
@@ -138,17 +127,30 @@ window.SITE = {
      Ex.: "assets/img/verso.png" (63×88, ideal 744×1040 px). */
   versoCarta: "",
 
+  /* ---------- Onde retirar ----------
+     Lojas parceiras onde o pedido é entregue. aCombinar: true mostra o selo "a combinar".
+     O botão "Ver no mapa" abre o endereço no Google Maps. */
+  entrega: {
+    texto: "Por enquanto a entrega é só na região. Você retira o pedido numa das lojas parceiras, e em Campinas a entrega é combinada com você.",
+    pontos: [
+      { nome: "Gold House TCG", cidade: "Santa Bárbara d'Oeste", endereco: "Av. Sabato Ronsini, 401 - Vila Garrido" },
+      { nome: "Geek Collections House", cidade: "Americana", endereco: "R. Mal. Floriano Peixoto, 87 - Centro" },
+      { nome: "Geek Collections House", cidade: "Piracicaba", endereco: "R. Benjamin Constant, 2410 - Centro" },
+      { nome: "Barão Geek House", cidade: "Campinas · Barão Geraldo", endereco: "R. Germano Casellatto, 44 - Jd. Santa Genebra II", aCombinar: true },
+      { nome: "Mont", cidade: "Campinas · Barão Geraldo", endereco: "R. Roxo Moreira, 1624 - Cidade Universitária", aCombinar: true },
+    ],
+  },
+
   /* ---------- Depoimentos ---------- */
   depoimentos: [],   // vazio = a seção de avaliações não aparece. Ex.: { texto: "…", autor: "@cliente" }
 
   /* ---------- Perguntas frequentes ---------- */
   faq: [
     { p: "Posso usar em torneio?", r: "Em torneio oficial (sancionado), não: lá só vale carta original. Em mesa casual, Commander entre amigos e playtest, depende só do combinado da mesa." },
-    { p: "Qual o prazo?", r: "[Prazo de produção + prazo de envio]" },
-    { p: "Como faço o pagamento?", r: "[Pix, cartão, etc.]" },
-    { p: "Vocês enviam pra minha cidade?", r: "[Formas de envio e se tem retirada]" },
-    { p: "Posso pedir arte personalizada?", r: "[Sim/não e como funciona]" },
-    { p: "Faz de outros jogos além de Magic?", r: "[Pokémon, One Piece, Lorcana…]" },
+    { p: "Qual o prazo?", r: "O deck completo leva 14 dias de produção. Quando fica pronto, a gente combina a retirada com você." },
+    { p: "Como faço o pagamento?", r: "Só por Pix, com o pagamento completo antes da produção." },
+    { p: "Vocês enviam pra minha cidade?", r: "Por enquanto, só entrega e retirada na região: na Gold House (Santa Bárbara d'Oeste) e na Geek Collections House (Americana e Piracicaba). Em Campinas, na Mont e na Barão Geek House, a combinar." },
+    { p: "Posso pedir arte personalizada?", r: "Sim. A arte personalizada é feita sob orçamento: chame no Instagram e conte a ideia." },
   ],
 
   /* ---------- Rodapé ---------- */

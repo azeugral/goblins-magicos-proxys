@@ -301,6 +301,18 @@
       cta));
   });
 
+  const pontos = $("[data-pontos]");
+  (get("entrega.pontos") || []).forEach((pt, i) => {
+    const mapa = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${pt.nome}, ${pt.endereco}, ${pt.cidade.split("·")[0].trim()} - SP`)}`;
+    pontos.append(h("li", { class: "ponto rv", style: `--i:${i}` },
+      h("span", { class: "ponto__cidade", text: pt.cidade }),
+      h("h3", { text: pt.nome }),
+      h("p", { text: pt.endereco }),
+      pt.aCombinar ? h("span", { class: "ponto__selo", text: "a combinar" }) : null,
+      h("a", { class: "ponto__mapa", href: mapa, target: "_blank", rel: "noopener" }, "Ver no mapa")));
+  });
+  if (!pontos.children.length) $("#retirada").remove();
+
   const quotes = $("[data-quotes]");
   const deps = get("depoimentos") || [];
   if (deps.length) {
