@@ -70,3 +70,6 @@ Depois abra http://localhost:8000.
 
 ## Publicar
 É um site estático: basta subir a pasta `site/` inteira para qualquer hospedagem estática (Netlify, Vercel, Cloudflare Pages, GitHub Pages).
+
+### Domínio goblinsmagicos.com.br
+Metatags, canonical, sitemap e robots já apontam para https://goblinsmagicos.com.br/ e a 404 calcula o `<base>` sozinha. Falta o DNS no registro.br: registros A para 185.199.108.153, 185.199.109.153, 185.199.110.153 e 185.199.111.153, e CNAME `www` para `azeugral.github.io`. Com o DNS respondendo, ligar o domínio nas configurações do Pages (Custom domain + Enforce HTTPS). Antes disso não ligar: o endereço github.io passaria a redirecionar para um domínio que ainda não existe.
