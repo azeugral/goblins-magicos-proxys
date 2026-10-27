@@ -28,9 +28,9 @@ window.SITE = {
     miniProvas: ["Retirada em Americana, Santa Bárbara e Piracicaba"],
     // cartas do leque em volta do goblin (exemplos/destaques; a vitrine fica com fotos reais)
     cartas: [
-      { nome: "Black Lotus", imagem: "assets/img/cartas/black-lotus.webp", foil: false },
-      { nome: "The One Ring", imagem: "assets/img/cartas/the-one-ring.webp", foil: true },
-      { nome: "Krark's Thumb", imagem: "assets/img/cartas/kraks-thumb.webp", foil: false },
+      { nome: "Goldspan Dragon", imagem: "assets/img/cartas/goldspan-dragon.webp", foil: false },
+      { nome: "Sol Ring", imagem: "assets/img/cartas/sol-ring.webp", foil: true },
+      { nome: "Desolation of Smaug", imagem: "assets/img/cartas/desolation-of-smaug.webp", foil: false },
     ],
   },
 
@@ -51,9 +51,15 @@ window.SITE = {
      tags:   usadas nos filtros. Crie as que quiser.
      foil:   true = ganha o brilho holográfico animado. */
   vitrine: [
-    { nome: "Black Lotus", imagem: "assets/img/cartas/black-lotus.webp", tags: ["Clássica", "Moldura antiga"], foil: false },
-    { nome: "The One Ring", imagem: "assets/img/cartas/the-one-ring.webp", tags: ["Foil", "Borderless"], foil: true },
-    { nome: "Krark's Thumb", imagem: "assets/img/cartas/kraks-thumb.webp", tags: ["Borderless", "Arte alternativa"], foil: false },
+    { nome: "Goldspan Dragon", imagem: "assets/img/cartas/goldspan-dragon.webp", tags: ["Secret Lair", "Borderless"], foil: false },
+    { nome: "Sol Ring", imagem: "assets/img/cartas/sol-ring.webp", tags: ["Foil", "Secret Lair"], foil: true },
+    { nome: "Desolation of Smaug", imagem: "assets/img/cartas/desolation-of-smaug.webp", tags: ["Showcase"], foil: false },
+    { nome: "Redirect Lightning", imagem: "assets/img/cartas/redirect-lightning.webp", tags: ["Showcase"], foil: false },
+    { nome: "Steam Vents", imagem: "assets/img/cartas/steam-vents.webp", tags: ["Borderless"], foil: false },
+    { nome: "Izzet Signet", imagem: "assets/img/cartas/izzet-signet.webp", tags: ["Foil", "Moldura antiga"], foil: true },
+    { nome: "Propaganda", imagem: "assets/img/cartas/propaganda.webp", tags: ["Secret Lair", "Borderless"], foil: false },
+    { nome: "Sleight of Hand", imagem: "assets/img/cartas/sleight-of-hand.webp", tags: ["Borderless", "Arte alternativa"], foil: false },
+    { nome: "Fellwar Stone", imagem: "assets/img/cartas/fellwar-stone.webp", tags: ["Foil", "Moldura antiga"], foil: true },
   ],
 
   /* ---------- Qualidade de perto ---------- */
@@ -61,17 +67,17 @@ window.SITE = {
     titulo: "Papel, corte e acabamento",
     texto: "Cada carta é impressa no tamanho oficial, em papel cartão 300 g ou papel fotográfico 260 g. No foil, o adesivo vinílico holográfico vai aplicado sobre uma carta verdadeira, então o verso é o original.",
     itens: [
-      { titulo: "Papel", texto: "Papel cartão 300 g ou papel fotográfico 260 g, cortado em 63×88 mm.", foto: "" },
-      { titulo: "Foil", texto: "Adesivo vinílico aplicado sobre uma carta verdadeira: o verso é de carta original.", foto: "" },
+      { titulo: "Papel", texto: "Papel cartão 300 g ou papel fotográfico 260 g, cortado em 63×88 mm.", foto: "assets/img/fotos/papel.webp" },
+      { titulo: "Foil", texto: "Adesivo vinílico aplicado sobre uma carta verdadeira: o verso é de carta original.", foto: "assets/img/fotos/foil.webp" },
     ],
-    // Comparação lado a lado (arraste). Deixe "" para mostrar exemplo.
-    comparacao: { original: "assets/img/cartas/the-one-ring.webp", proxy: "assets/img/cartas/the-one-ring.webp", proxyFoil: true, legendaOriginal: "Original", legendaProxy: "Goblins Mágicos" },
+    // Comparação lado a lado (arraste): original = scan oficial do Scryfall, proxy = foto da carta impressa. Deixe "" para mostrar exemplo.
+    comparacao: { original: "assets/img/cartas/goldspan-dragon-original.webp", proxy: "assets/img/cartas/goldspan-dragon.webp", proxyFoil: false, legendaOriginal: "Original", legendaProxy: "Goblins Mágicos" },
   },
 
   /* ---------- Como funciona ----------
      imagem (opcional): mostra uma carta pequena no canto do passo. */
   passos: [
-    { titulo: "Monte o deck", imagem: "assets/img/cartas/black-lotus.webp", texto: "Cole a lista no montador ou busque carta por carta. Escolha a arte de cada uma e marque o que é foil." },
+    { titulo: "Monte o deck", imagem: "assets/img/cartas/steam-vents.webp", texto: "Cole a lista no montador ou busque carta por carta. Escolha a arte de cada uma e marque o que é foil." },
     { titulo: "Envie a encomenda", texto: "Deixe seu contato e envie. O pedido chega pra gente com todas as artes escolhidas, e você fica com o link." },
     { titulo: "Orçamento e pagamento", texto: "A gente confirma o valor com você. O pagamento é só por Pix, completo antes da produção." },
     { titulo: "Produção e retirada", texto: "O deck completo fica pronto em 14 dias. Por enquanto a entrega é só na região, nas lojas parceiras." },
@@ -86,7 +92,7 @@ window.SITE = {
     avisoEstimativa: "Carta dupla face (MDFC) acompanha o valor da original: as duas faces são impressas. O valor final é confirmado com você antes da produção.",
     planos: [
       { id: "avulsa", titulo: "Avulsa", valor: 2.5, unidade: "por carta", descricao: "Carta comum, sem foil. Dupla face (MDFC): R$ 5,00.", destaque: false },
-      { id: "deck", titulo: "Deck pronto", imagem: "assets/img/cartas/the-one-ring.webp", valor: 180, unidade: "99 cartas + comandante", descricao: "Commander completo pela sua lista. O comandante vai em foil, de brinde. Dupla face (MDFC): + R$ 1,80 cada.", destaque: true, selo: "Comandante foil de brinde" },
+      { id: "deck", titulo: "Deck pronto", imagem: "assets/img/cartas/sol-ring.webp", valor: 180, unidade: "99 cartas + comandante", descricao: "Commander completo pela sua lista. O comandante vai em foil, de brinde. Dupla face (MDFC): + R$ 1,80 cada.", destaque: true, selo: "Comandante foil de brinde" },
       { id: "foil", titulo: "Foil", valor: 8, unidade: "por carta", descricao: "Acabamento foil. Dupla face (MDFC) foil: R$ 16,00.", destaque: false },
     ],
   },
