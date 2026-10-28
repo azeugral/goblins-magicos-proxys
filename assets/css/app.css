@@ -241,7 +241,7 @@ select:focus { outline: none; box-shadow: 0 0 0 2px var(--blue) inset; }
   .lado { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding-top: 18px; }
   .bloco--resumo { display: none; }
   /* a lista da busca não pode ser cortada pelo painel nem ficar atrás da mesa */
-  .lado { overflow: visible; position: relative; z-index: 6; }
+  .lado { overflow: visible; position: relative; top: auto; z-index: 6; } /* top: auto anula o top: 60px do modo fixo, que empurrava o painel por cima da mesa */
   .busca__lista { z-index: 20; max-height: min(48svh, 380px); overscroll-behavior: contain; }
   .busca__lista li { min-height: 48px; display: flex; align-items: center; padding: 12px 14px; font-size: 17px; }
   .busca input { scroll-margin-top: 76px; font-size: 17px; padding: 15px 14px; }
@@ -290,6 +290,26 @@ select:focus { outline: none; box-shadow: 0 0 0 2px var(--blue) inset; }
   .arte__nav .btn--ig { flex: 1; }
   .painel__topo { grid-template-columns: 1fr; }
   .caixa .field-row { grid-template-columns: 1fr 1fr; }
+}
+
+/* "Sua mesa" no celular: passo 3 da sequência, título e "Limpar" na mesma linha, fio de ouro no topo, texto fluido.
+   Fica depois do bloco de 560px para valer por cima dele. */
+@media (max-width: 900px) {
+  .mesa { position: relative; padding-top: 28px; }
+  .mesa::before { content: ""; position: absolute; left: var(--gutter); right: var(--gutter); top: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(227, 189, 85, .55), transparent); }
+  .mesa__topo { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px 14px; margin-bottom: 18px; padding-bottom: 16px;
+    border-bottom: 0; background: linear-gradient(90deg, transparent, rgba(227, 189, 85, .18), transparent) bottom / 100% 1px no-repeat; }
+  .mesa__txt { display: contents; }
+  .mesa__tit { grid-column: 1; grid-row: 1; margin: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px;
+    font-size: clamp(21px, 6.2vw, 26px); line-height: 1.1; overflow-wrap: anywhere; }
+  .mesa__tit::before { content: "3"; flex: none; width: 24px; height: 24px; display: grid; place-items: center; background: var(--blue); color: var(--bg);
+    font: 700 12px/1 var(--f-mono); }
+  .mesa__tit span { flex-basis: 100%; padding-left: 34px; font-size: 12px; letter-spacing: .04em; }
+  .mesa__tit span:empty { display: none; }
+  .mesa__txt p { grid-column: 1 / -1; font-size: clamp(15px, 4.2vw, 16.5px); line-height: 1.55; text-wrap: pretty; }
+  .btn--limpar { grid-column: 2; grid-row: 1; align-self: center; height: 40px; min-height: 0; padding: 0 12px; gap: 6px; font-size: 14px; white-space: nowrap; }
+  .btn--limpar svg { width: 16px; height: 16px; }
 }
 
 @media (hover: none) {
