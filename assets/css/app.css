@@ -240,6 +240,12 @@ select:focus { outline: none; box-shadow: 0 0 0 2px var(--blue) inset; }
   .app { grid-template-columns: 1fr; }
   .lado { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding-top: 18px; }
   .bloco--resumo { display: none; }
+  /* a lista da busca não pode ser cortada pelo painel nem ficar atrás da mesa */
+  .lado { overflow: visible; position: relative; z-index: 6; }
+  .busca__lista { z-index: 20; max-height: min(48svh, 380px); overscroll-behavior: contain; }
+  .busca__lista li { min-height: 48px; display: flex; align-items: center; padding: 12px 14px; font-size: 17px; }
+  .busca input { scroll-margin-top: 76px; font-size: 17px; padding: 15px 14px; }
+  .lado textarea { min-height: 112px; }
   .mesa { padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
   .app-dock { display: flex; align-items: center; justify-content: space-between; gap: 12px; position: fixed; inset: auto 0 0; z-index: 40; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(10, 7, 5, .94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .45s var(--ease-out); }
   .app-dock.is-on { transform: none; }

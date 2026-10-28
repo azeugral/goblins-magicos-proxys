@@ -232,8 +232,16 @@ function addPorBusca(n) {
   bIn.value = ""; fecharBusca();
   const it = pedido.itens.find((i) => i.n === n);
   const li = it && lis.get(it.k);
-  if (li) { li.classList.add("is-novo"); li.scrollIntoView({ block: "nearest", behavior: reduced ? "auto" : "smooth" }); }
+  if (li) li.classList.add("is-novo");
+  // no celular a mesa fica lá embaixo: não rola até ela, mantém o teclado na busca pra próxima carta
+  if (celular()) bIn.focus();
+  else if (li) li.scrollIntoView({ block: "nearest", behavior: reduced ? "auto" : "smooth" });
 }
+function celular() { return matchMedia("(max-width: 900px)").matches; }
+// no celular, ao tocar na busca, o campo sobe pro topo (abaixo da barra) e a lista abre no espaço acima do teclado
+bIn.addEventListener("focus", () => {
+  if (celular()) setTimeout(() => bIn.scrollIntoView({ block: "start", behavior: reduced ? "auto" : "smooth" }), 250);
+});
 bIn.addEventListener("input", () => {
   if (!cat) return;
   bOps = cat.sugerir(bIn.value, 8);
