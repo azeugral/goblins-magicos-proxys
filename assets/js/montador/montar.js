@@ -452,6 +452,33 @@ form.addEventListener("submit", async (e) => {
       const j = await r.json().catch(() => ({}));
       enviado = r.ok && j.ok === true;
     } catch (err) { console.warn("e-mail não enviado", err); }
+  } else if (cfgPedidos.email) {
+    // FormSubmit: e-mail em tabela, sem conta nem script
+    const rot = { instagram: "Instagram", whatsapp: "WhatsApp", email: "E-mail" };
+    const campos = {
+      _subject: `Encomenda ${codigo} · ${cli.n} · ${pedido.total} cartas`,
+      _template: "table", _captcha: "false", _honey: form.site.value,
+      Pedido: codigo,
+      Nome: cli.n,
+      Contato: `${rot[cli.t] || cli.t}: ${cli.ct}`,
+      Cidade: cli.ci || "-",
+      "Observações": cli.o || "-",
+      Resumo: `${pedido.total} cartas (${pedido.foils} foil) · ${est.txt}`,
+      "Link do pedido": link,
+      Lista: pedido.itens.map((i) => linhaTexto(cat, i)).join("\n"),
+    };
+    if (cli.t === "email") campos._replyto = cli.ct;
+    try {
+      const ctrl = new AbortController();
+      const tm = setTimeout(() => ctrl.abort(), 20000);
+      const r = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(cfgPedidos.email)}`, {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(campos), signal: ctrl.signal,
+      });
+      clearTimeout(tm);
+      const j = await r.json().catch(() => ({}));
+      enviado = r.ok && String(j.success) === "true";
+    } catch (err) { console.warn("e-mail não enviado", err); }
   }
   btn.disabled = false; btn.textContent = "Enviar encomenda";
 

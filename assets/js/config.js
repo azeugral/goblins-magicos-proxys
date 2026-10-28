@@ -15,7 +15,7 @@ window.SITE = {
     instagram: "goblinsmagicos",          // só o @, sem o "@". Ex.: "goblinsmagicos"
     whatsapp: "5519996224081",            // opcional. Só números com DDI+DDD. Ex.: "5511999999999". Vazio = esconde o botão
     cidade: "Americana - SP",
-    email: "",                            // opcional
+    email: "goblinsmagicos@gmail.com",    // opcional
   },
 
   /* ---------- Topo da página ---------- */
@@ -104,9 +104,12 @@ window.SITE = {
   /* ---------- Encomendas pelo montador (montar.html) ----------
      emailEndpoint: URL do Google Apps Script que manda o e-mail pra você
                     (passo a passo no LEIA-ME.md, seção "E-mail das encomendas").
-                    Vazio = o cliente recebe só o link do pedido pra mandar na DM. */
+                    Vazio = o cliente recebe só o link do pedido pra mandar na DM.
+     email:         sem o Apps Script, a encomenda vai pra este e-mail pelo FormSubmit
+                    (o 1º pedido manda um e-mail de ativação: é só clicar em "Activate Form"). */
   pedidos: {
     emailEndpoint: "",
+    email: "goblinsmagicos@gmail.com",
     respostaTexto: "A gente te chama pelo contato que você deixou com o orçamento e o prazo.",
   },
 
