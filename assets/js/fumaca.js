@@ -17,7 +17,11 @@
 
   const VS = "attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}";
   const FS = `
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;   // no celular, mediump estraga o ruído (a fumaça fica chapada e parada)
+#else
 precision mediump float;
+#endif
 uniform vec2 uRes; uniform float uFase; uniform float uForca;
 uniform vec3 uFundo; uniform vec3 uCorA; uniform vec3 uCorB;
 float h21(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
@@ -94,7 +98,7 @@ void main(){
 
   const t0 = performance.now() - Math.random() * CICLO * 1000; // cada visita começa num ponto do ciclo
   let ultimo = 0, rodando = false;
-  const desenhar = (agora) => { gl.uniform1f(uFase, ((agora - t0) / 1000 / CICLO) * Math.PI * 2); gl.drawArrays(gl.TRIANGLES, 0, 3); };
+  const desenhar = (agora) => { gl.uniform1f(uFase, (((agora - t0) / 1000 / CICLO) % 1) * Math.PI * 2); gl.drawArrays(gl.TRIANGLES, 0, 3); }; // fase em [0, 2π): o fluxo fecha o ciclo sem emenda
   function quadro(agora) {
     if (!rodando) return;
     requestAnimationFrame(quadro);

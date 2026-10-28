@@ -36,8 +36,9 @@ CARTAS = {
     'sol-ring':            (F + 'fc4fada7-image.jpg', 0, {}),
     'fellwar-stone':       (F + 'f2b71268-image.jpg', 0, {'topo': 'direita'}),
     'izzet-signet':        (F + 'f9ec7f63-image.jpg', 0, {}),
-    # na sleeve vermelha, sobre a mesa escura; o canto inf. esq. está coberto por outras cartas
-    'sol-ring-showcase':   ('2026-10-28/sol-ring-showcase.webp', 0, {'cantos': [(73, 122), (583, 36), (692, 752), None]}),
+    # japonesa, na sleeve vermelha, com o polegar por cima da borda esquerda; depois do recorte:
+    #   python tools/alinhar_ao_scan.py assets/img/cartas/dwarven-grunt-ja.webp ../_fotos-dono/scryfall/dwarven-grunt-ody-185.png "<polígono do polegar>" 19
+    'dwarven-grunt-ja':    ('2026-10-28/dwarven-ody-ja.webp', 0, {'cantos': [(63, 217), (582, 103), (738, 816), (238, 930)]}),
 }
 
 
