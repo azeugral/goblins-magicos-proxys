@@ -139,11 +139,22 @@ export async function gerarPdf(cartas, op, aoProgresso) {
     return { x: x * MM, y: (PH - yTopo - ch) * MM };
   };
 
+  const hex = /^#([0-9a-f]{6})$/i.exec(op.corMarca || "");
+  const cor = hex ? rgb(...[0, 2, 4].map((i) => parseInt(hex[1].substr(i, 2), 16) / 255)) : rgb(0, 0, 0);
+  const esp = 0.5;
+  const xs = [], ys = [];
+  for (let c = 0; c < cols; c++) { const x = ox + c * (cw + gap) + b; xs.push(x, x + CW); }
+  for (let r = 0; r < rows; r++) { const y = oy + r * (ch + gap) + b; ys.push(y, y + CH); }
+
+  /* folha incompleta: as linhas atravessam o papel inteiro. Vão por baixo das cartas,
+     então só aparecem nas margens, nos espaços e nas vagas vazias */
+  function linhasInteiras(pg) {
+    xs.forEach((x) => pg.drawLine({ start: { x: x * MM, y: 0 }, end: { x: x * MM, y: PH * MM }, thickness: esp, color: cor }));
+    ys.forEach((y) => pg.drawLine({ start: { x: 0, y: (PH - y) * MM }, end: { x: PW * MM, y: (PH - y) * MM }, thickness: esp, color: cor }));
+  }
+
   function marcas(pg) {
-    const cor = rgb(0, 0, 0), esp = 0.5, L = 4 * MM;
-    const xs = [], ys = [];
-    for (let c = 0; c < cols; c++) { const x = ox + c * (cw + gap) + b; xs.push(x, x + CW); }
-    for (let r = 0; r < rows; r++) { const y = oy + r * (ch + gap) + b; ys.push(y, y + CH); }
+    const L = 4 * MM;
     const topo = oy, base = oy + rows * ch + (rows - 1) * gap, esq = ox, dir = ox + cols * cw + (cols - 1) * gap;
     xs.forEach((x) => {
       pg.drawLine({ start: { x: x * MM, y: (PH - topo) * MM + 1 }, end: { x: x * MM, y: (PH - topo) * MM + 1 + Math.min(L, topo * MM - 2) }, thickness: esp, color: cor });
@@ -160,6 +171,8 @@ export async function gerarPdf(cartas, op, aoProgresso) {
     for (let s = 0; s < g.length; s += porFolha) {
       const folha = g.slice(s, s + porFolha);
       const pg = doc.addPage([PW * MM, PH * MM]);
+      const incompleta = op.marcas && folha.length < porFolha;
+      if (incompleta) linhasInteiras(pg);
       folha.forEach((c, i) => {
         const img = fontes.get(c.frente);
         const p = pos(i, false);
@@ -170,6 +183,7 @@ export async function gerarPdf(cartas, op, aoProgresso) {
       paginas++;
       if (op.versos) {
         const vs = doc.addPage([PW * MM, PH * MM]);
+        if (incompleta) linhasInteiras(vs);
         folha.forEach((c, i) => {
           const img = fontes.get(c.verso || op.versoCasa);
           const p = pos(i, true);

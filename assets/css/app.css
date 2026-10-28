@@ -205,6 +205,15 @@ select:focus { outline: none; box-shadow: 0 0 0 2px var(--blue) inset; }
 .caixa .field__lbl { font-size: 10.5px; }
 .caixa select { width: 100%; font-size: 14px; }
 .opcoes { display: grid; gap: 10px; }
+.cor-corte { display: grid; gap: 8px; padding-left: 30px; }
+.cor-corte[hidden] { display: none; }
+.cor-corte__op { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.cor-corte__op button, .cor-corte__livre { width: 28px; height: 28px; padding: 0; border: 0; background: var(--c); box-shadow: 0 0 0 1px rgba(241, 230, 207, .22) inset; cursor: pointer; transition: box-shadow .25s var(--ease); }
+.cor-corte__op button[aria-pressed="true"], .cor-corte__livre.is-on { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--gold); }
+.cor-corte__op button:focus-visible, .cor-corte__livre:focus-within { outline: 2px solid var(--blue); outline-offset: 3px; }
+.cor-corte__livre { position: relative; background: conic-gradient(#e00000, #e0c000, #00b050, #00a8e8, #6030e0, #e000a0, #e00000); }
+.cor-corte__livre.is-on { background: var(--livre); }
+.cor-corte__livre input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; border: 0; padding: 0; }
 .prog { display: grid; gap: 8px; }
 .prog[hidden] { display: none; }
 .prog p { margin: 0; font: 500 12px/1.4 var(--f-mono); color: var(--ink-3); }

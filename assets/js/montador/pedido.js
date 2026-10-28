@@ -3,7 +3,7 @@
 import { C, $, $$, h, icon, toast, estimar, copiar, baixar, store } from "./util.js?v=6";
 import { Catalogo, imagem, ROTULOS, idbGet, idbSet, idbDel } from "./catalogo.js?v=6";
 import { lerLink, edicaoPorSetNum, linhaTexto } from "./pedido-dados.js?v=6";
-import { gerarPdf, versoDaCasa } from "./pdf.js?v=6";
+import { gerarPdf, versoDaCasa } from "./pdf.js?v=7";
 
 $$("[data-bind]").forEach((el) => {
   const v = el.dataset.bind.split(".").reduce((o, k) => (o == null ? o : o[k]), C);
@@ -177,12 +177,29 @@ $("[data-x-csv]").addEventListener("click", () => {
 
 /* ---------- PDF ---------- */
 const fPdf = $("[data-pdf]");
+
+/* cor da linha de corte: amostras rápidas ou qualquer cor; fica lembrada neste computador */
+const corCaixa = $("[data-cor-corte]"), corLivre = corCaixa.querySelector(".cor-corte__livre");
+function usarCor(cor) {
+  fPdf.corMarca.value = cor;
+  let amostra = false;
+  corCaixa.querySelectorAll("[data-cor]").forEach((b) => { const sim = b.dataset.cor === cor; b.setAttribute("aria-pressed", sim); amostra ||= sim; });
+  corLivre.classList.toggle("is-on", !amostra);
+  corLivre.style.setProperty("--livre", cor);
+  store.set("goblins-cor-corte", cor);
+}
+corCaixa.querySelectorAll("[data-cor]").forEach((b) => b.addEventListener("click", () => usarCor(b.dataset.cor)));
+fPdf.corMarca.addEventListener("input", () => usarCor(fPdf.corMarca.value));
+const corSalva = store.get("goblins-cor-corte") || "";
+usarCor(/^#[0-9a-f]{6}$/i.test(corSalva) ? corSalva : "#000000");
+fPdf.marcas.addEventListener("change", () => { corCaixa.hidden = !fPdf.marcas.checked; });
+
 fPdf.addEventListener("submit", async (e) => {
   e.preventDefault();
   const btn = $("[data-pdf-btn]");
   const op = {
     papel: fPdf.papel.value, gap: fPdf.gap.value, bleed: fPdf.bleed.value, cantos: fPdf.cantos.value,
-    marcas: fPdf.marcas.checked, basicos: fPdf.basicos.checked, foilSep: fPdf.foilSep.checked, versos: fPdf.versos.checked,
+    marcas: fPdf.marcas.checked, corMarca: fPdf.corMarca.value, basicos: fPdf.basicos.checked, foilSep: fPdf.foilSep.checked, versos: fPdf.versos.checked,
     titulo: `Pedido ${dados.id}`,
   };
   let base = itens.filter((i) => i.n >= 0);
