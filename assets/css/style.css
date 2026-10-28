@@ -163,10 +163,12 @@ button { font: inherit; color: inherit; }
 /* ---------- Hero ---------- */
 .hero { position: relative; min-height: 100svh; display: flex; align-items: center; padding: calc(var(--top-h) + 32px) 0 72px; overflow: hidden; isolation: isolate; }
 .hero__bg { position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  /* some antes da borda de baixo: o hero emenda na seção seguinte sem corte */
+  -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent); mask-image: linear-gradient(180deg, #000 50%, transparent);
   background:
     radial-gradient(55% 55% at 76% 46%, rgba(176, 138, 60, .2), transparent 70%),
     radial-gradient(26% 26% at 86% 18%, rgba(227, 189, 85, .22), transparent 70%),
-    radial-gradient(55% 60% at 8% 95%, rgba(44, 90, 160, .22), transparent 70%);
+    radial-gradient(45% 50% at 6% 62%, rgba(44, 90, 160, .2), transparent 70%);
 }
 .hero__grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(24px, 4vw, 64px); align-items: center; }
 .hero__title { font-size: clamp(32px, 3.9vw, 60px); }
@@ -371,8 +373,8 @@ button { font: inherit; color: inherit; }
 
 /* ---------- Montador ---------- */
 .section--forge { background:
-  radial-gradient(50% 60% at 100% 0%, rgba(176, 138, 60, .14), transparent 70%),
-  radial-gradient(40% 50% at 0% 100%, rgba(44, 90, 160, .16), transparent 70%); }
+  radial-gradient(40% 35% at 100% 40%, rgba(176, 138, 60, .14), transparent 70%),
+  radial-gradient(35% 35% at 0% 55%, rgba(44, 90, 160, .16), transparent 70%); }
 .forge { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
 .forge__panel > *, .field-row > *, .forge > *, .faq > *, .quality > *, .hero__grid > * { min-width: 0; }
 .forge .sec-head { position: sticky; top: calc(var(--top-h) + 32px); }

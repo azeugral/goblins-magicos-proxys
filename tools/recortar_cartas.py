@@ -23,6 +23,8 @@ W, H, RAIO = 744, 1040, 36
 # saída: foto, índice da carta achada (ordem de leitura) e opções:
 #   borda=True  aceita carta encostada na borda da foto
 #   topo='direita'  a carta foi fotografada deitada, com o título virado para a direita
+#   cantos=[(x,y)...]  cantos marcados à mão (sup. esq., sup. dir., inf. dir., inf. esq.), pra foto
+#                      em fundo escuro; um canto None (coberto) sai dos outros três, lados paralelos
 F = '2026-10-27/'
 CARTAS = {
     'propaganda':          (F + '39477c63-image.jpg', 0, {'topo': 'direita'}),
@@ -34,7 +36,18 @@ CARTAS = {
     'sol-ring':            (F + 'fc4fada7-image.jpg', 0, {}),
     'fellwar-stone':       (F + 'f2b71268-image.jpg', 0, {'topo': 'direita'}),
     'izzet-signet':        (F + 'f9ec7f63-image.jpg', 0, {}),
+    # na sleeve vermelha, sobre a mesa escura; o canto inf. esq. está coberto por outras cartas
+    'sol-ring-showcase':   ('2026-10-28/sol-ring-showcase.webp', 0, {'cantos': [(73, 122), (583, 36), (692, 752), None]}),
 }
+
+
+def cantos_manuais(c):
+    c = list(c)
+    i = c.index(None) if None in c else -1
+    if i >= 0:  # paralelogramo: o canto que falta é a soma dos vizinhos menos o oposto
+        a, b, o = np.array(c[i - 1]), np.array(c[(i + 1) % 4]), np.array(c[(i + 2) % 4])
+        c[i] = tuple(a + b - o)
+    return np.array(c, dtype=np.float64)
 
 
 def achar_cartas(img, borda=False):
@@ -139,9 +152,10 @@ def main():
         borda = op.get('borda', False)
         if (foto, borda) not in cache:
             img = cv2.imread(os.path.join(FOTOS, foto))
-            cache[(foto, borda)] = (img, achar_cartas(img, borda))
+            cache[(foto, borda)] = (img, [] if 'cantos' in op else achar_cartas(img, borda))
         img, qs = cache[(foto, borda)]
-        im = acabamento(endireitar(img, qs[idx], op.get('topo')))
+        q = cantos_manuais(op['cantos']) if 'cantos' in op else qs[idx]
+        im = acabamento(endireitar(img, q, op.get('topo')))
         out = os.path.join(SAIDA, nome + '.webp')
         im.save(out, 'WEBP', quality=88, method=6)
         print(out, round(os.path.getsize(out) / 1024), 'KB')

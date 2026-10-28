@@ -49,6 +49,7 @@ window.SITE = {
     { nome: "Propaganda", imagem: "assets/img/cartas/propaganda.webp", tags: ["Secret Lair", "Borderless"], foil: false },
     { nome: "Sleight of Hand", imagem: "assets/img/cartas/sleight-of-hand.webp", tags: ["Borderless", "Arte alternativa"], foil: false },
     { nome: "Fellwar Stone", imagem: "assets/img/cartas/fellwar-stone.webp", tags: ["Foil", "Moldura antiga"], foil: true },
+    { nome: "Sol Ring", imagem: "assets/img/cartas/sol-ring-showcase.webp", tags: ["Foil", "Showcase"], foil: true },
   ],
 
   /* ---------- Qualidade de perto ---------- */
