@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Goblins Mágicos Proxys · Proxies de Magic em Americana, SP</title>
   <meta name="description" content="Proxies de Magic no tamanho oficial para mesa casual, Commander e playtest: avulsa R$ 2,50, foil R$ 8, deck pronto R$ 180. Monte o deck online, retire em Americana e região.">
-  <meta name="theme-color" content="#120e0c">
+  <meta name="theme-color" content="#0f0a07">
   <link rel="canonical" href="https://goblinsmagicos.com.br/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
@@ -26,8 +26,8 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Almendra:wght@700&family=Permanent+Marker&family=Unbounded:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=19">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=29">
   <script type="application/ld+json">
   {
    "@context": "https://schema.org",
@@ -46,6 +46,7 @@
   </script>
 </head>
 <body>
+  <canvas class="fumaca-fundo" data-fumaca aria-hidden="true"></canvas>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
   <!-- ============ TOPO ============ -->
@@ -53,12 +54,13 @@
     <div class="topbar__in wrap">
       <a class="brand" href="#topo" aria-label="Início">
         <img src="assets/img/logo-192.webp" width="40" height="40" alt="">
-        <span class="brand__txt"><span class="brand__nome">Goblins Mágicos</span><span class="brand__proxys">Proxys</span></span>
+        <img class="brand__marca" src="assets/img/marca.webp?v=3" width="159" height="68" alt="Goblins Mágicos Proxys">
       </a>
       <nav class="nav" aria-label="Principal">
         <a href="#vitrine">Vitrine</a>
         <a href="#qualidade">Qualidade</a>
         <a href="#como">Como funciona</a>
+        <a href="#feedbacks">Feedbacks</a>
         <a href="#precos">Preços</a>
         <a href="#retirada">Retirada</a>
         <a href="#faq">Dúvidas</a>
@@ -73,6 +75,7 @@
       <a href="#vitrine">Vitrine</a>
       <a href="#qualidade">Qualidade</a>
       <a href="#como">Como funciona</a>
+      <a href="#feedbacks">Feedbacks</a>
       <a href="#precos">Preços</a>
       <a href="#retirada">Retirada</a>
       <a href="montar.html">Montar deck</a>
@@ -110,10 +113,6 @@
       </div>
     </section>
 
-    <!-- ============ SELOS ============ -->
-    <div class="ticker" aria-label="Diferenciais">
-      <div class="ticker__track" data-ticker></div>
-    </div>
 
     <!-- ============ VITRINE ============ -->
     <section class="section" id="vitrine">
@@ -160,8 +159,21 @@
       </div>
     </section>
 
+    <!-- ============ FEEDBACKS ============ -->
+    <section class="section section--alt" id="feedbacks">
+      <div class="wrap fb">
+        <header class="sec-head" data-reveal>
+          <p class="kicker">Feedbacks</p>
+          <h2 class="sec-title">Quem já jogou com <em>os goblins</em></h2>
+          <p class="sec-lead">Mensagens de quem já recebeu o deck e levou pra mesa.</p>
+          <a class="btn btn--ghost" data-ig-dm target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24"><use href="#i-ig"/></svg>Mandar o seu feedback</a>
+        </header>
+        <div class="fb__lista" data-feedbacks></div>
+      </div>
+    </section>
+
     <!-- ============ PREÇOS ============ -->
-    <section class="section section--alt" id="precos">
+    <section class="section" id="precos">
       <div class="wrap">
         <header class="sec-head sec-head--center" data-reveal>
           <p class="kicker">Preços</p>
@@ -220,10 +232,6 @@
       </div>
     </section>
 
-    <!-- ============ DEPOIMENTOS ============ -->
-    <section class="section section--tight" aria-label="Depoimentos">
-      <div class="quotes" data-quotes></div>
-    </section>
 
     <!-- ============ FAQ ============ -->
     <section class="section" id="faq">
@@ -257,7 +265,7 @@
       <div class="foot__brand">
         <img src="assets/img/logo-192.webp" width="64" height="64" alt="">
         <div>
-          <span class="brand__txt foot__marca" aria-label="Goblins Mágicos Proxys"><span class="brand__nome">Goblins Mágicos</span><span class="brand__proxys">Proxys</span></span>
+          <img class="foot__marca" src="assets/img/marca.webp?v=3" width="210" height="90" alt="Goblins Mágicos Proxys">
           <span class="foot__cidade" data-bind="marca.cidade"></span>
         </div>
       </div>
@@ -298,7 +306,8 @@
     <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
   </svg>
 
-  <script src="assets/js/config.js?v=20"></script>
-  <script src="assets/js/main.js?v=22"></script>
+  <script src="assets/js/config.js?v=21"></script>
+  <script src="assets/js/main.js?v=25"></script>
+  <script src="assets/js/fumaca.js?v=1" defer></script>
 </body>
 </html>

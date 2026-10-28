@@ -34,17 +34,6 @@ window.SITE = {
     ],
   },
 
-  /* ---------- Faixa de selos (rola sozinha) ---------- */
-  selos: [
-    "Tamanho oficial 63×88 mm",
-    "Papel cartão 300 g ou fotográfico 260 g",
-    "Embaralha junto com as originais",
-    "Cabe em qualquer sleeve",
-    "Foil aplicado sobre carta original",
-    "Deck completo pela sua lista",
-    "Deck completo em 14 dias",
-  ],
-
   /* ---------- Vitrine ----------
      imagem: caminho da foto (ex.: "assets/img/cartas/krark.webp").
              Deixe "" para mostrar uma carta de exemplo no lugar.
@@ -147,8 +136,21 @@ window.SITE = {
     ],
   },
 
-  /* ---------- Depoimentos ---------- */
-  depoimentos: [],   // vazio = a seção de avaliações não aparece. Ex.: { texto: "…", autor: "@cliente" }
+  /* ---------- Feedbacks ----------
+     Cada feedback é uma conversa: mensagens do cliente (de: "cliente") e da loja (de: "loja").
+     Mensagem com texto, imagem ou os dois. Lista vazia = a seção some do site. */
+  feedbacks: [
+    {
+      canal: "WhatsApp",
+      data: "27/10/2026",
+      sobre: "Deck pronto",
+      mensagens: [
+        { de: "cliente", texto: "Oh, comprei um deck e ficou do balacobaco", hora: "22:44" },
+        { de: "cliente", imagem: "assets/img/feedbacks/balacobaco.webp", alt: "Figurinha de um cachorrinho olhando de perto pra câmera", hora: "22:44" },
+        { de: "loja", texto: "Muito obrigado pelo feedback!!", hora: "22:52" },
+      ],
+    },
+  ],
 
   /* ---------- Perguntas frequentes ---------- */
   faq: [

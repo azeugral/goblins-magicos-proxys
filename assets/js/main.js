@@ -105,15 +105,6 @@
     });
   }
 
-  /* ---------- faixa de selos ---------- */
-  const ticker = $("[data-ticker]");
-  const selos = get("selos") || [];
-  if (ticker && selos.length) {
-    let base = [];
-    while (base.length < 10) base = base.concat(selos);
-    [...base, ...base].forEach((t) => ticker.append(h("span", { text: t })));
-  }
-
   /* =====================================================================
      CARTA
      ===================================================================== */
@@ -300,7 +291,9 @@
      ===================================================================== */
   const steps = $("[data-steps]");
   const miniCarta = (img, cls) => (img ? h("div", { class: cls, "aria-hidden": "true" }, makeCard({ nome: "", imagem: img }, 0, { eager: true })) : null);
-  (get("passos") || []).forEach((s, i) => steps.append(h("li", { class: "step rv" + (s.imagem ? " step--carta" : ""), style: `--i:${i}` },
+  // número do passo: contorno em vetor (tools/gerar_numeros.py), com a URL já resolvida pro var() do CSS
+  const numero = (i) => `--num:url("${new URL(`assets/img/num/${i + 1}.svg`, document.baseURI).href}")`;
+  (get("passos") || []).forEach((s, i) => steps.append(h("li", { class: "step rv" + (s.imagem ? " step--carta" : ""), style: `--i:${i};${numero(i)}` },
     miniCarta(s.imagem, "step__carta"), h("h3", { text: s.titulo }), h("p", { text: s.texto }))));
 
   const moeda = get("precos.moeda") || "R$";
@@ -336,15 +329,25 @@
   });
   if (!pontos.children.length) $("#retirada").remove();
 
-  const quotes = $("[data-quotes]");
-  const deps = get("depoimentos") || [];
-  if (deps.length) {
-    const mk = (d, hidden) => h("figure", { class: "quote", "aria-hidden": hidden ? "true" : null }, h("p", { text: d.texto }), h("cite", { text: d.autor }));
-    let base = [];
-    while (base.length < 6) base = base.concat(deps);
-    base.forEach((d) => quotes.append(mk(d, false)));
-    if (!reduced) base.forEach((d) => quotes.append(mk(d, true)));
-  } else quotes.closest("section").remove();
+  /* feedbacks: cada um vira um cartão com a conversa; as bolhas entram uma a uma */
+  const fbLista = $("[data-feedbacks]");
+  const fbs = get("feedbacks") || [];
+  if (fbLista && fbs.length) {
+    fbs.forEach((f, i) => {
+      const chat = h("div", { class: "fb-chat" });
+      (f.mensagens || []).forEach((m, j) => {
+        const lado = m.de === "loja" ? " bolha--loja" : "";
+        const img = m.imagem ? h("img", { src: m.imagem, alt: m.alt || "", loading: "lazy", decoding: "async" }) : null;
+        chat.append(h("p", { class: `bolha${lado}${img && !m.texto ? " bolha--img" : ""}`, style: `--i:${j}` },
+          img, m.texto || null, m.hora ? h("time", { text: m.hora }) : null));
+      });
+      fbLista.append(h("figure", { class: "fb-card rv", style: `--i:${i}` },
+        h("figcaption", { class: "fb-card__topo" },
+          h("img", { src: "assets/img/logo-192.webp", alt: "", width: 40, height: 40 }),
+          h("div", {}, h("b", { text: f.sobre || "Cliente" }), h("span", { text: [f.canal, f.data].filter(Boolean).join(" · ") }))),
+        chat));
+    });
+  } else if (fbLista) fbLista.closest("section").remove();
 
   const faq = $("[data-faq]");
   (get("faq") || []).forEach((f, i) => {
@@ -462,15 +465,8 @@
      NAVEGAÇÃO, TOPO, MENU, DOCK
      ===================================================================== */
   const topbar = $("[data-topbar]");
-  let lastY = scrollY;
-  const onScroll = () => {
-    const y = scrollY;
-    topbar.classList.toggle("is-solid", y > 20);
-    const drawerOpen = menuBtn.getAttribute("aria-expanded") === "true";
-    topbar.classList.toggle("is-hidden", !drawerOpen && y > 500 && y > lastY + 4);
-    if (y < lastY - 4 || y < 500) topbar.classList.remove("is-hidden");
-    lastY = y;
-  };
+  // o topo fica sempre à vista; só fica mais sólido depois que a página rola
+  const onScroll = () => topbar.classList.toggle("is-solid", scrollY > 20);
 
   const menuBtn = $("[data-menu-btn]");
   const drawer = $("[data-drawer]");

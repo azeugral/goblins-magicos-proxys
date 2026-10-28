@@ -70,9 +70,9 @@ export async function versoDaCasa(logoSrc, nome) {
   const cv = document.createElement("canvas");
   cv.width = w; cv.height = hh;
   const c = cv.getContext("2d");
-  c.fillStyle = "#120e0c"; c.fillRect(0, 0, w, hh);
+  c.fillStyle = "#110b08"; c.fillRect(0, 0, w, hh);
   const g = c.createRadialGradient(w / 2, hh * 0.45, 10, w / 2, hh * 0.45, hh * 0.6);
-  g.addColorStop(0, "rgba(222,59,32,.55)"); g.addColorStop(1, "rgba(222,59,32,0)");
+  g.addColorStop(0, "rgba(180,96,47,.55)"); g.addColorStop(1, "rgba(180,96,47,0)");
   c.fillStyle = g; c.fillRect(0, 0, w, hh);
   c.strokeStyle = "#f3e6c8"; c.lineWidth = 10; c.strokeRect(34, 34, w - 68, hh - 68);
   c.strokeStyle = "rgba(243,230,200,.35)"; c.lineWidth = 3; c.strokeRect(54, 54, w - 108, hh - 108);
@@ -84,7 +84,7 @@ export async function versoDaCasa(logoSrc, nome) {
     c.beginPath(); c.arc(w / 2, hh * 0.45, d / 2, 0, Math.PI * 2); c.lineWidth = 12; c.strokeStyle = "#f3e6c8"; c.stroke();
   } catch { /* sem logo */ }
   c.fillStyle = "#f3e6c8"; c.textAlign = "center";
-  c.font = "700 46px Unbounded, 'Arial Black', sans-serif";
+  c.font = "800 46px Cinzel, Georgia, serif";
   (nome || "").toUpperCase().split(" ").reduce((linhas, p) => {
     const l = linhas[linhas.length - 1];
     if (l && (l + " " + p).length <= 16) linhas[linhas.length - 1] = l + " " + p; else linhas.push(p);

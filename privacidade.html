@@ -5,22 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Privacidade · Goblins Mágicos Proxys</title>
   <meta name="description" content="Quais dados o site da Goblins Mágicos Proxys recebe, pra que servem e como pedir a exclusão.">
-  <meta name="theme-color" content="#120e0c">
+  <meta name="theme-color" content="#0f0a07">
   <link rel="canonical" href="https://goblinsmagicos.com.br/privacidade">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
   <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon-64.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Almendra:wght@700&family=Permanent+Marker&family=Unbounded:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=19">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=29">
   <link rel="stylesheet" href="assets/css/app.css?v=15">
 </head>
 <body class="app-body">
+  <canvas class="fumaca-fundo" data-fumaca aria-hidden="true"></canvas>
   <header class="app-top">
     <a class="brand" href="./" aria-label="Voltar ao site">
       <img src="assets/img/logo-192.webp" width="36" height="36" alt="">
-      <span class="brand__txt"><span class="brand__nome">Goblins Mágicos</span><span class="brand__proxys">Proxys</span></span>
+      <img class="brand__marca" src="assets/img/marca.webp?v=3" width="159" height="68" alt="Goblins Mágicos Proxys">
     </a>
     <span class="app-top__tit">Privacidade</span>
     <a class="linkbtn app-top__voltar" href="./">← Site</a>
@@ -75,5 +76,6 @@
       document.querySelector("[data-year]").textContent = new Date().getFullYear();
     })();
   </script>
+  <script src="assets/js/fumaca.js?v=1" defer></script>
 </body>
 </html>
