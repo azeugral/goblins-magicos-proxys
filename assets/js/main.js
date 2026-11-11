@@ -303,7 +303,7 @@
     const val = typeof p.valor === "number" ? brl(p.valor) : p.valor;
     const priceB = h("b", { text: val });
     const cta = p.id === "deck"
-      ? h("a", { class: "btn btn--ig", href: "montar.html" }, "Montar meu deck")
+      ? h("a", { class: "btn btn--ig", href: "/montar" }, "Montar meu deck")
       : h("a", { class: "btn btn--ghost", href: dmUrl, target: igOk ? "_blank" : null, rel: "noopener", "data-ig-dm": "" }, "Pedir na DM");
     if (!igOk && p.id !== "deck") cta.addEventListener("click", (e) => { e.preventDefault(); toast("Configure o @ do Instagram no config.js"); });
     plans.append(h("article", { class: "plan rv" + (p.destaque ? " plan--hl" : ""), style: `--i:${i}` },
@@ -437,7 +437,7 @@
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (last.total) store.set("goblins-lista-importar", ta.value);
-    location.href = "montar.html";
+    location.href = "/montar";
   });
 
   // alternativa: mandar só a lista em texto pela DM
